@@ -12,6 +12,8 @@
           <tr class="text-center">
             <th>ID</th>
             <th>Encoded</th>
+            <th>Order Number</th>
+            <th>Encoded by</th>
             <th>Transaction Date</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -29,10 +31,7 @@
         <tbody>
           <tr>
             <td>Mark</td>
-            <td>Otto</td>
             <td>Mark</td>
-            <td>Otto</td>
-            <td>Otto</td>
             <td>Mark</td>
             <td>Otto</td>
             <td>Mark</td>
@@ -40,24 +39,51 @@
             <td>Otto</td>
             <td>Mark</td>
             <td>Otto</td>
+            <td>Mark</td>
             <td>Otto</td>
-            <td class="text-center"><span class="badge badge-secondary"><i class="fa fa-ellipsis-h"></i></span></td>
+            <td class="text-center">
+              <span class="badge badge-success" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                <i class="fa fa-shopping-cart"></i>
+              </span>
+            </td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Otto</td>
+            <td class="text-center">
+              <span class="badge badge-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+              </span>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+              </div>
+            </td>
           </tr>
-          <tr>
-            <td>Mark ?</td>
+          <tr class="table-secondary">
+            <td>Mark</td>
             <td>Otto</td>
-            <td>Mark ?</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td>Mark ?</td>
-            <td>Otto</td>
-            <td>Mark ?</td>
+            <td>Mark</td>
             <td>Otto</td>
             <td>Otto</td>
-            <td>Mark ?</td>
             <td>Otto</td>
             <td>Otto</td>
-            <td class="text-center"><span class="badge badge-secondary"><i class="fa fa-ellipsis-h"></i></span></td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td class="text-center"><span class="badge badge-success"><i class="fa fa-shopping-cart"></i></span></td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Otto</td>
+            <td class="text-center">
+              <span class="badge badge-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+              </span>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -126,7 +152,7 @@
           <div class="row mt-2">
             <div class="col">
               Sub-total
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="" value="" readonly>
             </div>
             <div class="col">
               Delivery Charge
@@ -134,7 +160,7 @@
             </div>
             <div class="col">
               Total Price
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="" value="" readonly>
             </div>
           </div>
         </form>
