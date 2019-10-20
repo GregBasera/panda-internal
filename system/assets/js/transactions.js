@@ -1,4 +1,10 @@
+$('#transactionFormAlert').hide();
+$('#spinner').hide();
+
 function addTransaction() {
+  $('#transactionFormAlert').hide();
+  var isValid = true;
+
   var transaction = {
     't_datetime' : document.transaction.t_date.value+' '+document.transaction.t_time.value,
     'c_fname' : document.transaction.c_fname.value,
@@ -31,8 +37,53 @@ function addTransaction() {
     }
   }
 
-  console.log(transaction);
-  console.log(order);
+  Object.keys(transaction).forEach(function (key) {
+    if (transaction[key] == '') {
+      $('#transactionFormAlert').html('One or more input field seems to be empty.');
+      $('#transactionFormAlert').show();
+      isValid = false;
+    }
+    if (key == 'c_contact' && !(transaction[key].match(/^(09|\+639)\d{9}$/))) {
+      $('#transactionFormAlert').html("Sorry, one of those phone numbers might be invalid.");
+      $('#transactionFormAlert').show();
+      isValid = false;
+    }
+    if ((key == 't_subtotal' || key == 't_dcharge' || key == 't_grandT' || key == 't_ordernum') && !(transaction[key].match(/^\d*\.?\d*$/))) {
+      $('#transactionFormAlert').html("A Non-numeric input was detected in an input field that expects numeric inputs.");
+      $('#transactionFormAlert').show();
+      isValid = false;
+    }
+  });
+
+  for(var q = 0; q < order.length; q++) {
+    Object.keys(order[q]).forEach(function (key) {
+      if (order[q][key] == '') {
+        $('#transactionFormAlert').html('One or more input field seems to be empty.');
+        $('#transactionFormAlert').show();
+        isValid = false;
+      }
+      if ((key == 'i_quantity' || key == 'i_price') && !(order[q][key].match(/^\d*\.?\d*$/))) {
+        $('#transactionFormAlert').html('A Non-numeric input was detected in an input field that expects numeric inputs.');
+        $('#transactionFormAlert').show();
+        isValid = false;
+      }
+    });
+  }
+
+  if (isValid) {
+    var data = {'t' : transaction, 'o' : order};
+    $.ajax({
+      type: "POST",
+      url: window.origin + "/transactions/addTransaction/t",
+      data: data,
+      beforeSend: function() {
+        $('#spinner').show();
+      },
+      success: function(result) {
+        $(location).attr('href', window.origin + '/transactions');
+      }
+    });
+  }
 }
 
 function addItem() {

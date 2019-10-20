@@ -13,12 +13,18 @@
           <i class="fa fa-search"></i>
         </button>
       </div>
+      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
+        data-placement="right" title="Print Report">
+        <button class="btn btn-dark mb-2">
+          <i class="fa fa-print"></i>
+        </button>
+      </div>
     </div>
     <div class="col pl-0">
       <div class="container-fluid">
         <h2><?php echo $title ?></h2>
       </div>
-      <table class="table table-bordered table-hover">
+      <table class="table table-bordered table-sm table-hover">
         <thead>
           <tr class="text-center">
             <!-- <th>Partner ID</th> -->
@@ -39,10 +45,22 @@
               <!-- <td><?php echo $partner['partner_ID'] ?></td> -->
               <td><?php echo $partner['partner_name'] ?></td>
               <td class="text-left"><?php echo $partner['partner_address'] ?></td>
-              <td><?php echo $partner['partner_contact'] ?></td>
+              <td>
+                <?php if (strlen($partner['partner_contact']) == 11): ?>
+                  <?php echo substr($partner['partner_contact'], 0, 4).'-'.substr($partner['partner_contact'], 4, 3).'-'.substr($partner['partner_contact'], 7) ?>
+                <?php else: ?>
+                  <?php echo $partner['partner_contact'] ?>
+                <?php endif; ?>
+              </td>
               <td><?php echo $partner['partner_email'] ?></td>
               <td><?php echo $partner['owner_name'] ?></td>
-              <td><?php echo $partner['owner_contact'] ?></td>
+              <td>
+                <?php if (strlen($partner['owner_contact']) == 11): ?>
+                  <?php echo substr($partner['owner_contact'], 0, 4).'-'.substr($partner['owner_contact'], 4, 3).'-'.substr($partner['owner_contact'], 7) ?>
+                <?php else: ?>
+                  <?php echo $partner['owner_contact'] ?>
+                <?php endif; ?>
+              </td>
               <td><?php echo $partner['owner_email'] ?></td>
               <td><?php echo $partner['contract_percentage'] ?></td>
               <td>
@@ -66,7 +84,7 @@
   </div>
 </div>
 
-
+<!-- Add a partner modal -->
 <div class="modal fade add-partner-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -77,50 +95,54 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="" target="" action="" method="post">
+        <form class="" target="" action="" method="post" name="Partner">
           <div class="row">
             <div class="col-4 pr-1">
               Partner Name
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="p_name" value="">
             </div>
             <div class="col-8 pl-1">
               Partner Address
-              <input class="form-control" type="text" name="" value="">
+              <input class="form-control" type="text" name="p_address" value="">
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-3 pr-1">
               Partner Contact
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="p_contact" value="">
             </div>
             <div class="col-5 px-1">
               Partner Email
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="p_email" value="">
             </div>
             <div class="col-4 pl-1">
               Owner Name
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="o_name" value="">
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-3 pr-1">
               Owner Contact
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="o_contact" value="">
             </div>
             <div class="col-5 px-1">
               Owner Email
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="o_email" value="">
             </div>
             <div class="col-4 pl-1">
               Contract Percentage
-              <input class="form-control text-center" type="text" name="" value="">
+              <input class="form-control text-center" type="text" name="p_percentage" value="">
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="container-fluid">
+          <div class="spinner-border spinner-border-sm" id="spinner"></div>
+          <div class="alert alert-danger py-1 my-auto" id="partnerFormAlert"></div>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="addPartner();">Save</button>
       </div>
     </div>
   </div>

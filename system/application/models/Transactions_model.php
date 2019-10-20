@@ -29,4 +29,12 @@ class Transactions_model extends CI_Model{
     $result = $query->result_array();
     return $result;
   }
+
+  public function addTransaction($data) {
+    $this->db->insert('TRANSACTIONS', $data);
+  }
+
+  public function addOrder($data) {
+    $this->db->insert('ORDERS', $data);
+  }
 }

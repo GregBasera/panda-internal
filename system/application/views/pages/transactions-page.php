@@ -55,7 +55,7 @@
               <td><?php echo $transaction['transaction_date'] ?></td>
               <td><?php echo $transaction['customer_fname'] ?></td>
               <td><?php echo $transaction['customer_lname'] ?></td>
-              <td><?php echo $transaction['customer_contact'] ?></td>
+              <td><?php echo substr($transaction['customer_contact'], 0, 4).'-'.substr($transaction['customer_contact'], 4, 3).'-'.substr($transaction['customer_contact'], 7) ?></td>
               <td class="text-left"><?php echo $transaction['delivery_address'] ?></td>
               <td class="text-left"><?php echo $transaction['landmark_directions'] ?></td>
               <td><?php echo $transaction['partner_name'] ?></td>
@@ -66,7 +66,7 @@
                       <?php if ($item['transaction_ID'] == $transaction['transaction_ID']): ?>
                         <?php echo $item['quantity'].' -- ' ?>
                         <?php echo $item['item_name'].' -- ' ?>
-                        <?php echo '<b>P '.$item['price'].'</b><br>' ?>
+                        <?php echo '<b>₱ '.$item['price'].'</b><br>' ?>
                       <?php endif; ?>
                     <?php endforeach; ?>
                   ">
@@ -201,6 +201,10 @@
           </div>
         </div>
         <div class="modal-footer">
+          <div class="container-fluid">
+            <div class="spinner-border spinner-border-sm" id="spinner"></div>
+            <div class="alert alert-danger py-1 my-auto" id="transactionFormAlert"></div>
+          </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" onclick="addTransaction();">Save</button>
         </div>

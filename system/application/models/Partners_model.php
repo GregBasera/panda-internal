@@ -7,4 +7,8 @@ class Partners_model extends CI_Model{
     $result = $query->result_array();
     return $result;
   }
+
+  public function addPartner($data) {
+    $this->db->insert('PARTNERS', $data);
+  }
 }
