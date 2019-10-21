@@ -15,7 +15,7 @@
       </div>
       <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
         data-placement="right" title="Print Report">
-        <button class="btn btn-dark mb-2">
+        <button class="btn btn-dark mb-2" data-toggle="modal" data-target=".print-report-modal">
           <i class="fa fa-print"></i>
         </button>
       </div>
@@ -209,6 +209,76 @@
           <button type="button" class="btn btn-primary" onclick="addTransaction();">Save</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Print a report modal -->
+<div class="modal fade print-report-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Print Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="" target="_blank" action="index.html" method="post">
+          <h4 class="px-3">Columns to be printed</h4>
+          <hr class="my-1">
+          <div class="row mb-3">
+            <div class="col-4">
+              <label class="d-block"><input type="checkbox" name="columns" value=""> Transaction ID</label>
+              <label class="d-block"><input type="checkbox" name="columns" value=""> Date Encoded</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Transaction Date</label>
+            </div>
+            <div class="col-4">
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Customer Firstname</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Customer Lastname</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Contact Number</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Delivery Address</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Landmarks/Directions</label>
+            </div>
+            <div class="col-4">
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Partner</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Order List</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Sub-Total</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Transaction Total</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h4 class="px-3">What kind of report</h4>
+              <hr class="my-1">
+              <label class="d-block"><input type="radio" name="kind" value=""> Daily Report</label>
+              <label class="d-block"><input type="radio" name="kind" value=""> Monthly Report</label>
+              <label class="d-block"><input type="radio" name="kind" value=""> Yearly Report</label>
+              <label class="d-block"><input type="radio" name="kind" value=""> Report for a Partner</label>
+              <!-- <select class="custom-select" name="t_partner">
+                <option value="">Click'n Choose</option>
+                <?php foreach ($partners as $partner): ?>
+                  <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
+                <?php endforeach; ?>
+              </select> -->
+            </div>
+            <div class="col-6">
+              <h4 class="px-3">Modifiers</h4>
+              <hr class="my-1">
+              <label class="d-block"><input type="radio" name="order" value=""> Ascending</label>
+              <label class="d-block"><input type="radio" name="order" value=""> Descending</label>
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Print</button>
+      </div>
     </div>
   </div>
 </div>
