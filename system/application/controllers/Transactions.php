@@ -47,4 +47,8 @@ class Transactions extends CI_Controller {
 			$this->transactions_model->addOrder($orderData);
 		}
 	}
+
+	public function print() {
+		echo $this->input->post('columns');
+	}
 }

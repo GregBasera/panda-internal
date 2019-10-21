@@ -223,62 +223,87 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form class="" target="_blank" action="index.html" method="post">
+      <form class="" name="Print" target="_blank" action="index.html" method="post">
+        <div class="modal-body">
           <h4 class="px-3">Columns to be printed</h4>
           <hr class="my-1">
-          <div class="row mb-3">
+          <div class="row mb-4">
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value=""> Transaction ID</label>
-              <label class="d-block"><input type="checkbox" name="columns" value=""> Date Encoded</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Encoded By</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="transaction_ID as ID"> Transaction ID</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="date_encoded as Encoded"> Date Encoded</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="order_number as Ord.No" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="encoded_by as Disp.by" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="transaction_date as Transaction Date" checked> Transaction Date</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Customer Firstname</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Customer Lastname</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Contact Number</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Delivery Address</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Landmarks/Directions</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="customer_fname as Firstname" checked> Customer Firstname</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="customer_lname as Lastname" checked> Customer Lastname</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="customer_contact as Contact" checked> Contact Number</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="delivery_address as Delivery Addresss" checked> Delivery Address</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="landmark_directions as Landmarks/Directions" checked> Landmarks/Directions</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Partner</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Order List</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Sub-Total</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Delivery Charge</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="" checked> Transaction Total</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="partner_ID as Partner" checked> Partner</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="order_list as Order(s)" checked> Order List</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="subtotal as Subtotal" checked> Sub-Total</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="delivery_charge as Charge" checked> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns" value="total_transaction_price as Total" checked> Transaction Total</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-6">
-              <h4 class="px-3">What kind of report</h4>
+            <div class="col-4">
+              <h4 class="px-3">Kind of report</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="radio" name="kind" value=""> Daily Report</label>
-              <label class="d-block"><input type="radio" name="kind" value=""> Monthly Report</label>
-              <label class="d-block"><input type="radio" name="kind" value=""> Yearly Report</label>
-              <label class="d-block"><input type="radio" name="kind" value=""> Report for a Partner</label>
-              <!-- <select class="custom-select" name="t_partner">
-                <option value="">Click'n Choose</option>
-                <?php foreach ($partners as $partner): ?>
-                  <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
-                <?php endforeach; ?>
-              </select> -->
+              <label class="d-block"><input type="radio" name="kind" value="daily" onclick="kindToMod();"> Daily Report</label>
+              <label class="d-block"><input type="radio" name="kind" value="monthly" onclick="kindToMod();"> Monthly Report</label>
+              <label class="d-block"><input type="radio" name="kind" value="yearly" onclick="kindToMod();"> Yearly Report</label>
+              <label class="d-block"><input type="radio" name="kind" value="partner" onclick="kindToMod();"> Report for a Partner</label>
             </div>
-            <div class="col-6">
+            <div class="col-4">
               <h4 class="px-3">Modifiers</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="radio" name="order" value=""> Ascending</label>
-              <label class="d-block"><input type="radio" name="order" value=""> Descending</label>
-
+              <div class="container-fluid" id="dailyMod">
+                <input class="form-control" type="date" name="dailyMod" value="">
+              </div>
+              <div class="container-fluid" id="monthlyMod">
+                <input class="form-control" type="date" name="monthlyMod" value="">
+              </div>
+              <div class="container-fluid" id="yearlyMod">
+                <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year">
+              </div>
+              <div class="container-fluid" id="partnerMod">
+                Partner Name
+                <select class="custom-select" name="partnerModName">
+                  <option value="">Click'n Choose</option>
+                  <?php foreach ($partners as $partner): ?>
+                    <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
+                  <?php endforeach; ?>
+                </select>
+                Month
+                <input class="form-control" type="date" name="partnerModMonth" value="">
+              </div>
+            </div>
+            <div class="col-4">
+              <h4 class="px-3">Order by</h4>
+              <hr class="my-1">
+              <label class="d-block"><input type="checkbox" name="orderDefined" value="transaction_date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined" value="order_number" checked> Order Number</label>
+              <br>
+              <label class="d-block"><input type="radio" name="order" value="asc"> Ascending</label>
+              <label class="d-block"><input type="radio" name="order" value="desc" checked> Descending</label>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Print</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <div class="container-fluid">
+            <div class="spinner-border spinner-border-sm" id="spinner2"></div>
+            <div class="alert alert-danger py-1 my-auto" id="printFormAlert"></div>
+          </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="confirmPrint();">Print</button>
+          <!-- <input class="btn btn-primary" type="submit" name="" value="Print"> -->
+        </div>
+      </form>
     </div>
   </div>
 </div>
