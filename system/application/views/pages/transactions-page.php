@@ -1,22 +1,19 @@
 <div class="container-fluid">
   <div class="row py-2">
     <div class="col-auto">
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Add a Transaction">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-primary mb-2" data-toggle="modal" data-target=".add-transac-modal">
-          <i class="fa fa-plus"></i>
+          <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Transaction"></i>
         </button>
       </div>
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Search">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-success mb-2">
-          <i class="fa fa-search"></i>
+          <i class="fa fa-search" data-toggle="tooltip" data-placement="right" title="Search"></i>
         </button>
       </div>
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Print Report">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-dark mb-2" data-toggle="modal" data-target=".print-report-modal">
-          <i class="fa fa-print"></i>
+          <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
         </button>
       </div>
     </div>
@@ -223,38 +220,38 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="" name="Print" target="_blank" action="index.html" method="post">
+      <form class="" name="Print" target="_blank" action="transactions/print" method="post">
         <div class="modal-body">
           <h4 class="px-3">Columns to be printed</h4>
           <hr class="my-1">
           <div class="row mb-4">
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value="transaction_ID as ID"> Transaction ID</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="date_encoded as Encoded"> Date Encoded</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="order_number as Ord.No" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="encoded_by as Disp.by" checked> Encoded By</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="transaction_date as Transaction Date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="transaction_ID as ID"> Transaction ID</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="date_encoded as Encoded"> Date Encoded</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="order_number as Ord.No" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="encoded_by as Disp.by" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="transaction_date as Transaction Date" checked> Transaction Date</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value="customer_fname as Firstname" checked> Customer Firstname</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="customer_lname as Lastname" checked> Customer Lastname</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="customer_contact as Contact" checked> Contact Number</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="delivery_address as Delivery Addresss" checked> Delivery Address</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="landmark_directions as Landmarks/Directions" checked> Landmarks/Directions</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_fname as Firstname" checked> Customer Firstname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_lname as Lastname" checked> Customer Lastname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_contact as Contact" checked> Contact Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="delivery_address as Delivery Addresss" checked> Delivery Address</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="landmark_directions as Landmarks/Directions" checked> Landmarks/Directions</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns" value="partner_ID as Partner" checked> Partner</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="order_list as Order(s)" checked> Order List</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="subtotal as Subtotal" checked> Sub-Total</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="delivery_charge as Charge" checked> Delivery Charge</label>
-              <label class="d-block"><input type="checkbox" name="columns" value="total_transaction_price as Total" checked> Transaction Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="partner_ID as Partner" checked> Partner</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="order_list as Order(s)" checked> Order List</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="subtotal as Subtotal" checked> Sub-Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="delivery_charge as Charge" checked> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="total_transaction_price as Total" checked> Transaction Total</label>
             </div>
           </div>
           <div class="row">
             <div class="col-4">
               <h4 class="px-3">Kind of report</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="radio" name="kind" value="daily" onclick="kindToMod();"> Daily Report</label>
+              <label class="d-block"><input type="radio" name="kind" value="daily" onclick="kindToMod();" required> Daily Report</label>
               <label class="d-block"><input type="radio" name="kind" value="monthly" onclick="kindToMod();"> Monthly Report</label>
               <label class="d-block"><input type="radio" name="kind" value="yearly" onclick="kindToMod();"> Yearly Report</label>
               <label class="d-block"><input type="radio" name="kind" value="partner" onclick="kindToMod();"> Report for a Partner</label>
@@ -263,13 +260,19 @@
               <h4 class="px-3">Modifiers</h4>
               <hr class="my-1">
               <div class="container-fluid" id="dailyMod">
+                Date
                 <input class="form-control" type="date" name="dailyMod" value="">
+                <small class="text-muted"><i>Preferred date of the report.</i></small>
               </div>
               <div class="container-fluid" id="monthlyMod">
+                Month and Year
                 <input class="form-control" type="date" name="monthlyMod" value="">
+                <small class="text-muted"><i>Preferred month and year of the report. You can input any day of the month.</i></small>
               </div>
               <div class="container-fluid" id="yearlyMod">
-                <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year">
+                Year
+                <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year" min="2008">
+                <small class="text-muted"><i>Preferred year of the report.</i></small>
               </div>
               <div class="container-fluid" id="partnerMod">
                 Partner Name
@@ -281,27 +284,27 @@
                 </select>
                 Month
                 <input class="form-control" type="date" name="partnerModMonth" value="">
+                <small class="text-muted"><i>Name of the partner and the preferred month for the report.</i></small>
               </div>
             </div>
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="orderDefined" value="transaction_date" checked> Transaction Date</label>
-              <label class="d-block"><input type="checkbox" name="orderDefined" value="order_number" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="transaction_date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="order_number" checked> Order Number</label>
               <br>
-              <label class="d-block"><input type="radio" name="order" value="asc"> Ascending</label>
+              <label class="d-block"><input type="radio" name="order" value="asc" required> Ascending</label>
               <label class="d-block"><input type="radio" name="order" value="desc" checked> Descending</label>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <div class="container-fluid">
-            <div class="spinner-border spinner-border-sm" id="spinner2"></div>
             <div class="alert alert-danger py-1 my-auto" id="printFormAlert"></div>
           </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" onclick="confirmPrint();">Print</button>
-          <!-- <input class="btn btn-primary" type="submit" name="" value="Print"> -->
+          <!-- <button type="button" class="btn btn-primary" onclick="confirmPrint();">Print</button> -->
+          <input class="btn btn-primary" type="submit" name="submit" value="Print">
         </div>
       </form>
     </div>

@@ -1,7 +1,7 @@
 $('#transactionFormAlert').hide();
-$('#printFormAlert').hide();
 $('#spinner').hide();
-$('#spinner2').hide();
+
+$('#printFormAlert').hide();
 $('#dailyMod').hide();
 $('#monthlyMod').hide();
 $('#yearlyMod').hide();
@@ -131,76 +131,6 @@ function kindToMod() {
   } else {
     $('#partnerMod').show();
   }
-}
-
-function confirmPrint() {
-  $('#printFormAlert').hide();
-  var valid = true;
-
-  var select = '';
-  $("input[name='columns']:checked").each(function() {
-    select = select + $(this).val() + ', ';
-  });
-  if(select == ''){
-    $('#printFormAlert').html('Columns sections might be empty');
-    $('#printFormAlert').show();
-    valid = false;
-  } else {
-    select = select.substring(0, select.length-2);
-  }
-
-  var where = '';
-  if(document.Print.kind.value == '') {
-    $('#printFormAlert').html('Some input fields might be empty');
-    $('#printFormAlert').show();
-    valid = false;
-  } else if (document.Print.kind.value == 'daily') {
-    if(document.Print.dailyMod.value == '') {
-      $('#printFormAlert').html('Some input fields might be empty');
-      $('#printFormAlert').show();
-      valid = false;
-    } else {
-      where = "transaction_date LIKE '" + document.Print.dailyMod.value + "%'"
-    }
-  } else if (document.Print.kind.value == 'monthly') {
-    if(document.Print.monthlyMod.value == '') {
-      $('#printFormAlert').html('Some input fields might be empty');
-      $('#printFormAlert').show();
-      valid = false;
-    } else {
-      where = "transaction_date LIKE '" + document.Print.monthlyMod.value.toString().substring(0, document.Print.monthlyMod.value.toString().length-3) + "%'";
-    }
-  } else if (document.Print.kind.value == 'yearly') {
-    if(document.Print.yearlyMod.value == '') {
-      $('#printFormAlert').html('Some input fields might be empty');
-      $('#printFormAlert').show();
-      valid = false;
-    } else {
-      where = "transaction_date LIKE '" + document.Print.yearlyMod.value + "%'"
-    }
-  } else {
-    if(document.Print.partnerModName.value == '' || document.Print.partnerModMonth.value == '') {
-      $('#printFormAlert').html('Some input fields might be empty');
-      $('#printFormAlert').show();
-      valid = false;
-    } else {
-      where = "partner_ID = '" + document.Print.partnerModName.value + "' and transaction_date LIKE '" + document.Print.partnerModMonth.value.toString().substring(0, document.Print.partnerModMonth.value.toString().length-3) + "%'";
-    }
-  }
-
-  var order = '';
-  $("input[name='orderDefined']:checked").each(function() {
-    order = order + $(this).val() + ', ';
-  });
-  if(order == ''){
-    $('#printFormAlert').html('Missing input(s) from "Order by" section');
-    $('#printFormAlert').show();
-    valid = false;
-  } else {
-    order = "order by " + order.substring(0, order.length-2) + ' ' + document.Print.order.value;
-  }
-
-  console.log(valid, order);
 }
 
 console.log("transacions.js loaded");

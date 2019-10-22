@@ -1,22 +1,19 @@
 <div class="container-fluid">
   <div class="row py-2">
     <div class="col-auto">
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Add a Partner">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-primary mb-2" data-toggle="modal" data-target=".add-partner-modal">
-          <i class="fa fa-plus"></i>
+          <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Partner"></i>
         </button>
       </div>
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Search">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-success mb-2">
-          <i class="fa fa-search"></i>
+          <i class="fa fa-search" data-toggle="tooltip" data-placement="right" title="Search"></i>
         </button>
       </div>
-      <div class="container-fluid p-0 d-flex justify-content-center" data-toggle="tooltip"
-        data-placement="right" title="Print Report">
+      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-dark mb-2">
-          <i class="fa fa-print"></i>
+          <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
         </button>
       </div>
     </div>

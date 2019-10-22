@@ -49,6 +49,24 @@ class Transactions extends CI_Controller {
 	}
 
 	public function print() {
-		echo $this->input->post('columns');
+		$select = $this->input->post('columns');
+		$kind = $this->input->post('kind');
+		if($kind == 'daily'){
+			$where = $this->input->post('dailyMod');
+		} elseif ($kind == 'monthly') {
+			$where = $this->input->post('monthlyMod');
+		} elseif ($kind == 'yearly') {
+			$where = $this->input->post('yearlyMod');
+		} else {
+			$where['name'] = $this->input->post('partnerModName');
+			$where['month'] = $this->input->post('partnerModMonth');
+		}
+		$order['def'] = $this->input->post('orderDefined');
+		$order['ordby'] = $this->input->post('order');
+
+		// var_dump($select);
+		// var_dump($kind);
+		// var_dump($where);
+		var_dump($order);
 	}
 }
