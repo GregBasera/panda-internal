@@ -70,9 +70,9 @@
                   <i class="fa fa-shopping-cart"></i>
                 </span>
               </td>
-              <td><?php echo $transaction['subtotal'] ?></td>
-              <td><?php echo $transaction['delivery_charge'] ?></td>
-              <td><?php echo $transaction['total_transaction_price'] ?></td>
+              <td>₱ <?php echo $transaction['subtotal'] ?></td>
+              <td>₱ <?php echo $transaction['delivery_charge'] ?></td>
+              <td>₱ <?php echo $transaction['total_transaction_price'] ?></td>
               <td>
                 <span class="badge badge-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-ellipsis-h"></i>
@@ -226,25 +226,25 @@
           <hr class="my-1">
           <div class="row mb-4">
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns[]" value="transaction_ID as ID"> Transaction ID</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="date_encoded as Encoded"> Date Encoded</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="order_number as Ord.No" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="encoded_by as Disp.by" checked> Encoded By</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="transaction_date as Transaction Date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_ID as 'ID'"> Transaction ID</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.date_encoded as 'Encoded'"> Date Encoded</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.order_number as 'Ord.No'" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Disp.by'" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_date as 'Transaction Date'" checked> Transaction Date</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_fname as Firstname" checked> Customer Firstname</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_lname as Lastname" checked> Customer Lastname</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="customer_contact as Contact" checked> Contact Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="delivery_address as Delivery Addresss" checked> Delivery Address</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="landmark_directions as Landmarks/Directions" checked> Landmarks/Directions</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_fname as 'Firstname'" checked> Customer Firstname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_lname as 'Lastname'" checked> Customer Lastname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_contact as 'Contact'" checked> Contact Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_address as 'Delivery Addresss'" checked> Delivery Address</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.landmark_directions as 'Landmarks/Directions'" checked> Landmarks/Directions</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns[]" value="partner_ID as Partner" checked> Partner</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="order_list as Order(s)" checked> Order List</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="subtotal as Subtotal" checked> Sub-Total</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="delivery_charge as Charge" checked> Delivery Charge</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="total_transaction_price as Total" checked> Transaction Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="p.partner_name as 'Partner'" checked> Partner</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="" checked> Order List</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.subtotal as 'Subtotal'" checked> Sub-Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_charge as 'Charge'" checked> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total'" checked> Transaction Total</label>
             </div>
           </div>
           <div class="row">
@@ -290,11 +290,11 @@
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="transaction_date" checked> Transaction Date</label>
-              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="order_number" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.transaction_date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.order_number" checked> Order Number</label>
               <br>
-              <label class="d-block"><input type="radio" name="order" value="asc" required> Ascending</label>
-              <label class="d-block"><input type="radio" name="order" value="desc" checked> Descending</label>
+              <label class="d-block"><input type="radio" name="order" value="asc" checked> Ascending</label>
+              <label class="d-block"><input type="radio" name="order" value="desc" required> Descending</label>
             </div>
           </div>
         </div>

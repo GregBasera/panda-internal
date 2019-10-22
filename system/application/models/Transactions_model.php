@@ -5,7 +5,8 @@ class Transactions_model extends CI_Model{
       select t.transaction_ID, t.date_encoded, t.order_number, t.encoded_by, t.transaction_date, t.customer_fname, t.customer_lname, t.customer_contact,
       t.delivery_address, t.landmark_directions, p.partner_name, t.subtotal, t.delivery_charge, t.total_transaction_price
       from TRANSACTIONS t, PARTNERS p
-      where t.partner_ID = p.partner_ID;
+      where t.partner_ID = p.partner_ID
+      order by t.transaction_date desc, t.order_number desc;
     ");
     $result = $query->result_array();
     return $result;
@@ -36,5 +37,17 @@ class Transactions_model extends CI_Model{
 
   public function addOrder($data) {
     $this->db->insert('ORDERS', $data);
+  }
+
+  public function printThis($q) {
+    $query = $this->db->query($q);
+    $result = $query->result_array();
+    return $result;
+  }
+
+  public function withThis($q) {
+    $query = $this->db->query($q);
+    $result = $query->result_array();
+    return $result;
   }
 }
