@@ -50,4 +50,10 @@ class Transactions_model extends CI_Model{
     $result = $query->result_array();
     return $result;
   }
+
+  public function andThis($q) {
+    $query = $this->db->query($q);
+    $result = $query->result_array();
+    return $result;
+  }
 }

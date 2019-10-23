@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/general.css' ?>">
 
     <?php if ($title == 'Transactions'): ?>
-      <link rel="stylesheet" href="<?php echo base_url().'assets/css/transactions.css' ?>">
+      <!-- <link rel="stylesheet" href="<?php echo base_url().'assets/css/transactions.css' ?>"> -->
     <?php elseif ($title == 'Partners'): ?>
-      <link rel="stylesheet" href="<?php echo base_url().'assets/css/partners.css' ?>">
+      <!-- <link rel="stylesheet" href="<?php echo base_url().'assets/css/partners.css' ?>"> -->
     <?php endif; ?>
   </head>
   <body>

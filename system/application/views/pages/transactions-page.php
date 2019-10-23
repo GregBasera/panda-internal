@@ -46,10 +46,10 @@
           <?php foreach ($transactions as $transaction): ?>
             <tr class="text-center">
               <!-- <td><?php echo $transaction['transaction_ID'] ?></td> -->
-              <td><?php echo $transaction['date_encoded'] ?></td>
+              <td><?php echo date('M d, Y h:i a', strtotime($transaction['date_encoded'])) ?></td>
               <td><?php echo $transaction['order_number'] ?></td>
               <td><?php echo $transaction['encoded_by'] ?></td>
-              <td><?php echo $transaction['transaction_date'] ?></td>
+              <td><?php echo date('M d, Y h:i a', strtotime($transaction['transaction_date'])) ?></td>
               <td><?php echo $transaction['customer_fname'] ?></td>
               <td><?php echo $transaction['customer_lname'] ?></td>
               <td><?php echo substr($transaction['customer_contact'], 0, 4).'-'.substr($transaction['customer_contact'], 4, 3).'-'.substr($transaction['customer_contact'], 7) ?></td>
@@ -228,8 +228,8 @@
             <div class="col-4">
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_ID as 'ID'"> Transaction ID</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.date_encoded as 'Encoded'"> Date Encoded</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.order_number as 'Ord.No'" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Disp.by'" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.order_number as 'Ord. No'" checked> Order Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Disp. by'" checked> Encoded By</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_date as 'Transaction Date'" checked> Transaction Date</label>
             </div>
             <div class="col-4">
@@ -242,9 +242,9 @@
             <div class="col-4">
               <label class="d-block"><input type="checkbox" name="columns[]" value="p.partner_name as 'Partner'" checked> Partner</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="" checked> Order List</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.subtotal as 'Subtotal'" checked> Sub-Total</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_charge as 'Charge'" checked> Delivery Charge</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total'" checked> Transaction Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.subtotal as 'Subtotal (₱)'" checked> Sub-Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_charge as 'D.Charge (₱)'" checked> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total (₱)'" checked> Transaction Total</label>
             </div>
           </div>
           <div class="row">
