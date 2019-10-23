@@ -89,7 +89,7 @@ class Transactions extends CI_Controller {
 			$data['isDefault'] = ($mods['name'] == '' || $mods['month'] == '') ? true : false;
 			$where = "t.partner_ID = '".$mods['name']."' and t.transaction_date like '".substr($mods['month'], 0, strlen($mods['month'])-3)."%'";
 
-			$data['title'] = "Partner's Monthly Report";
+			$data['title'] = "Partner's Monthly Sales Report";
 			$data['titleSupport'] = 'for month and year: '.date('F Y', strtotime(substr($mods['month'], 0, strlen($mods['month'])-3)));
 		}
 

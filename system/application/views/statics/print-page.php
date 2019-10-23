@@ -22,6 +22,8 @@
       <h1>Pandalivery Inc.</h1>
       <p class="m-0 text-muted">#5 Narra St., Mariano Village, Brgy. Balatas</p>
       <p class="m-0 text-muted">Naga City, 4400 Camarines Sur</p>
+      <p class="m-0 text-muted">Contact</p>
+      <p class="m-0 text-muted">Contact</p>
       <h3 class="mt-4"><?php echo $title ?></h3>
       <h6 class="mb-4"><?php echo $titleSupport ?></h6>
     </div>
@@ -70,8 +72,11 @@
     <div class="container-fluid mt-4">
       <div class="row">
         <div class="col-6">
-          <h5>Total number of Transactions: <b><?php echo $totals[0]['Number of Transactions'] ?></b></h5>
-          <h5>Total amount of (I dont no what this is called): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <h5>Last Month's Sales (last month): <b>???</b></h5>
+          <h5>Current Month's Sales (curr month): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <h5>Contract Percentage: <b>???</b></h5>
+          <h5>Monthly Service Fee (curr month): <b>???</b></h5>
+          <h5>Number of Deliveries (curr month): <b><?php echo $totals[0]['Number of Transactions'] ?></b></h5>
         </div>
       </div>
     </div>
