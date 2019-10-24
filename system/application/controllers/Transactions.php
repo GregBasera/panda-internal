@@ -62,35 +62,36 @@ class Transactions extends CI_Controller {
 
 		$kind = $this->input->post('kind');
 
+		$partner = $this->input->post('partner');
+		$where = ($partner != '') ? " and t.partner_ID = '".$partner."'" : '';
+		$ps = $this->transactions_model->getPartnerIDs();
+		foreach ($ps as $p) {
+			if ($p['partner_ID'] == $partner) {
+				$data['partner_name'] = $p['partner_name'];
+			}
+		}
+
 		if($kind == 'daily'){
 			$mods = $this->input->post('dailyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
-			$where = "t.transaction_date like '".$mods."%'";
+			$where = $where." and t.transaction_date like '".$mods."%'";
 
-			$data['title'] = 'Daily Transactions Report';
-			$data['titleSupport'] = 'for the date: '.date('M d, Y', strtotime($mods));
+			$data['kind'] = 'Daily Sales Report';
+			$data['titleSupport'] = 'for the date '.date('M d, Y', strtotime($mods));
 		} elseif ($kind == 'monthly') {
 			$mods = $this->input->post('monthlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
-			$where = "t.transaction_date like '".substr($mods, 0, strlen($mods)-3)."%'";
+			$where = $where." and t.transaction_date like '".substr($mods, 0, strlen($mods)-3)."%'";
 
-			$data['title'] = 'Monthly Transactions Report';
-			$data['titleSupport'] = 'for the month and year: '.date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)));
+			$data['kind'] = 'Monthly Sales Report';
+			$data['titleSupport'] = 'for the month and year '.date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)));
 		} elseif ($kind == 'yearly') {
 			$mods = $this->input->post('yearlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
-			$where = "t.transaction_date like '".$mods."%'";
+			$where = $where." and t.transaction_date like '".$mods."%'";
 
-			$data['title'] = 'Annual Transactions Report';
-			$data['titleSupport'] = 'for the year: '.$mods;
-		} else {
-			$mods['name'] = $this->input->post('partnerModName');
-			$mods['month'] = $this->input->post('partnerModMonth');
-			$data['isDefault'] = ($mods['name'] == '' || $mods['month'] == '') ? true : false;
-			$where = "t.partner_ID = '".$mods['name']."' and t.transaction_date like '".substr($mods['month'], 0, strlen($mods['month'])-3)."%'";
-
-			$data['title'] = "Partner's Monthly Sales Report";
-			$data['titleSupport'] = 'for month and year: '.date('F Y', strtotime(substr($mods['month'], 0, strlen($mods['month'])-3)));
+			$data['kind'] = 'Yearly Sales Report';
+			$data['titleSupport'] = 'for the year '.$mods;
 		}
 
 		$order['def'] = $this->input->post('orderDefined');
@@ -101,9 +102,9 @@ class Transactions extends CI_Controller {
 		}
 		$orderby = substr($orderby, 0, strlen($orderby)-2);
 
-		$query = 'select '.$select.' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID and '.$where.' order by '.$orderby.';';
-		$ordersQuery = 'select t.transaction_ID, o.quantity, o.item_name, o.price from TRANSACTIONS t, ORDERS o where t.transaction_ID = o.transaction_ID and '.$where.';';
-		$totals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID and ".$where.';';
+		$query = 'select '.$select.' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID'.$where.' order by '.$orderby.';';
+		$ordersQuery = 'select t.transaction_ID, o.quantity, o.item_name, o.price from TRANSACTIONS t, ORDERS o where t.transaction_ID = o.transaction_ID '.$where.';';
+		$totals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
 
 
 		$data['transactions'] = $this->transactions_model->printThis($query);
@@ -111,5 +112,8 @@ class Transactions extends CI_Controller {
 		$data['totals'] = $this->transactions_model->andThis($totals);
 
 		$this->load->view('statics/print-page', $data);
+		// echo $query.'<br>';
+		// echo $ordersQuery.'<br>';
+		// echo $totals.'<br>';
 	}
 }

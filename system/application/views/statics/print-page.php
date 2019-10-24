@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title><?php echo $title ?></title>
+    <title><?php echo $kind ?></title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400&display=swap">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -24,8 +24,23 @@
       <p class="m-0 text-muted">Naga City, 4400 Camarines Sur</p>
       <p class="m-0 text-muted">Contact</p>
       <p class="m-0 text-muted">Contact</p>
-      <h3 class="mt-4"><?php echo $title ?></h3>
+
+      <?php if(isset($partner_name)): ?>
+        <h3 class="mt-4"><?php echo $partner_name ?></h3>
+      <?php endif; ?>
+      <h4 class="<?php echo (!isset($partner_name)) ? 'mt-4' : 'mt-2' ?>"><?php echo $kind ?></h4>
       <h6 class="mb-4"><?php echo $titleSupport ?></h6>
+    </div>
+    <div class="container-fluid my-5">
+      <div class="row">
+        <div class="col-6">
+          <h5>Last Month's Sales (last month): <b>???</b></h5>
+          <h5>Current Month's Sales (curr month): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <h5>Contract Percentage: <b>???</b></h5>
+          <h5>Monthly Service Fee (curr month): <b>???</b></h5>
+          <h5>Number of Deliveries (curr month): <b><?php echo $totals[0]['Number of Transactions'] ?></b></h5>
+        </div>
+      </div>
     </div>
     <table class="table table-bordered table-sm table-hover">
       <thead class="text-center">
@@ -69,17 +84,6 @@
         <?php endforeach; ?>
       </tbody>
     </table>
-    <div class="container-fluid mt-4">
-      <div class="row">
-        <div class="col-6">
-          <h5>Last Month's Sales (last month): <b>???</b></h5>
-          <h5>Current Month's Sales (curr month): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
-          <h5>Contract Percentage: <b>???</b></h5>
-          <h5>Monthly Service Fee (curr month): <b>???</b></h5>
-          <h5>Number of Deliveries (curr month): <b><?php echo $totals[0]['Number of Transactions'] ?></b></h5>
-        </div>
-      </div>
-    </div>
     <?php endif; ?>
   </body>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

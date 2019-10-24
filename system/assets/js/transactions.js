@@ -1,11 +1,9 @@
 $('#transactionFormAlert').hide();
 $('#spinner').hide();
 
-$('#printFormAlert').hide();
 $('#dailyMod').hide();
 $('#monthlyMod').hide();
 $('#yearlyMod').hide();
-$('#partnerMod').hide();
 
 function addTransaction() {
   $('#transactionFormAlert').hide();
@@ -119,7 +117,6 @@ function kindToMod() {
   $('#dailyMod').hide();
   $('#monthlyMod').hide();
   $('#yearlyMod').hide();
-  $('#partnerMod').hide();
   var kind = document.Print.kind.value;
 
   if(kind == 'daily') {
@@ -128,8 +125,6 @@ function kindToMod() {
     $('#monthlyMod').show();
   } else if (kind == 'yearly') {
     $('#yearlyMod').show();
-  } else {
-    $('#partnerMod').show();
   }
 }
 

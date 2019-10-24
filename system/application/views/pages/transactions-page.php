@@ -254,37 +254,34 @@
               <label class="d-block"><input type="radio" name="kind" value="daily" onclick="kindToMod();" required> Daily Report</label>
               <label class="d-block"><input type="radio" name="kind" value="monthly" onclick="kindToMod();"> Monthly Report</label>
               <label class="d-block"><input type="radio" name="kind" value="yearly" onclick="kindToMod();"> Yearly Report</label>
-              <label class="d-block"><input type="radio" name="kind" value="partner" onclick="kindToMod();"> Report for a Partner</label>
             </div>
             <div class="col-4">
               <h4 class="px-3">Modifiers</h4>
               <hr class="my-1">
-              <div class="container-fluid" id="dailyMod">
-                Date
-                <input class="form-control" type="date" name="dailyMod" value="">
-                <small class="text-muted"><i>Preferred date of the report.</i></small>
-              </div>
-              <div class="container-fluid" id="monthlyMod">
-                Month and Year
-                <input class="form-control" type="date" name="monthlyMod" value="">
-                <small class="text-muted"><i>Preferred month and year of the report. You can input any day of the month.</i></small>
-              </div>
-              <div class="container-fluid" id="yearlyMod">
-                Year
-                <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year" min="2008">
-                <small class="text-muted"><i>Preferred year of the report.</i></small>
-              </div>
-              <div class="container-fluid" id="partnerMod">
+              <div class="container-fluid">
                 Partner Name
-                <select class="custom-select" name="partnerModName">
-                  <option value="">Click'n Choose</option>
+                <select class="custom-select" name="partner" data-toggle="tooltip" data-placement="bottom"
+                  title="Keep this field blank if you don't want a Partner specific report.">
+                  <option value="">--blank--</option>
                   <?php foreach ($partners as $partner): ?>
                     <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
                   <?php endforeach; ?>
                 </select>
-                Month
-                <input class="form-control" type="date" name="partnerModMonth" value="">
-                <small class="text-muted"><i>Name of the partner and the preferred month for the report.</i></small>
+              </div>
+              <div class="container-fluid mt-2" id="dailyMod">
+                Date
+                <input class="form-control" type="date" name="dailyMod" value="" data-toggle="tooltip" data-placement="bottom"
+                  title="Preferred date of the report.">
+              </div>
+              <div class="container-fluid mt-2" id="monthlyMod">
+                Month and Year
+                <input class="form-control" type="date" name="monthlyMod" value="" data-toggle="tooltip" data-placement="bottom"
+                  title="Preferred month and year of the report. You can input any day of the month.">
+              </div>
+              <div class="container-fluid mt-2" id="yearlyMod">
+                Year
+                <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year" min="2008" data-toggle="tooltip" data-placement="bottom"
+                  title="Preferred year of the report.">
               </div>
             </div>
             <div class="col-4">
@@ -299,12 +296,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <div class="container-fluid">
-            <div class="alert alert-danger py-1 my-auto" id="printFormAlert"></div>
-          </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <!-- <button type="button" class="btn btn-primary" onclick="confirmPrint();">Print</button> -->
-          <input class="btn btn-primary" type="submit" name="submit" value="Print">
+          <input class="btn btn-primary" type="submit" name="submit" value="Print Preview">
         </div>
       </form>
     </div>
