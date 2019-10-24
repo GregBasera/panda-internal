@@ -4,3 +4,7 @@ td {
   font-family: 'Roboto Condensed', sans-serif;
   vertical-align: middle !important;
 }
+
+.pointer {
+  cursor: pointer;
+}

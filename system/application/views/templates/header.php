@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Pandalivery - <?php echo $title ?></title>
-    <!-- <link rel="shortcut icon" type="image/png" href=""> -->
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url().'assets/imgs/head-logo.png' ?>">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,7 +18,8 @@
   <body>
     <div class="" style="max-height:100vh;"><!-- wrapper. the closing tag is in the footer -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="<?php echo base_url() ?>">Pandalivery</a>
+      <img width="120px" class="navbar-brand" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
+      <!-- <a class="navbar-brand" href="<?php echo base_url() ?>">Pandalivery</a> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

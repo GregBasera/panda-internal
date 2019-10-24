@@ -247,7 +247,7 @@
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total (₱)'" checked> Transaction Total</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-4">
             <div class="col-4">
               <h4 class="px-3">Kind of report</h4>
               <hr class="my-1">
@@ -258,31 +258,35 @@
             <div class="col-4">
               <h4 class="px-3">Modifiers</h4>
               <hr class="my-1">
-              <div class="container-fluid">
-                Partner Name
-                <select class="custom-select" name="partner" data-toggle="tooltip" data-placement="bottom"
-                  title="Keep this field blank if you don't want a Partner specific report.">
-                  <option value="">--blank--</option>
-                  <?php foreach ($partners as $partner): ?>
-                    <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="container-fluid mt-2" id="dailyMod">
+              Partner Name
+              <select class="custom-select" name="partner" data-toggle="tooltip" data-placement="bottom"
+                title="Keep this field blank if you don't want a Partner specific report.">
+                <option value="">--blank--</option>
+                <?php foreach ($partners as $partner): ?>
+                  <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
+                <?php endforeach; ?>
+              </select>
+              <div class="mt-2" id="dailyMod">
                 Date
                 <input class="form-control" type="date" name="dailyMod" value="" data-toggle="tooltip" data-placement="bottom"
                   title="Preferred date of the report.">
               </div>
-              <div class="container-fluid mt-2" id="monthlyMod">
+              <div class="mt-2" id="monthlyMod">
                 Month and Year
                 <input class="form-control" type="date" name="monthlyMod" value="" data-toggle="tooltip" data-placement="bottom"
                   title="Preferred month and year of the report. You can input any day of the month.">
               </div>
-              <div class="container-fluid mt-2" id="yearlyMod">
+              <div class="mt-2" id="yearlyMod">
                 Year
                 <input class="form-control" type="number" name="yearlyMod" value="" placeholder="year" min="2008" data-toggle="tooltip" data-placement="bottom"
                   title="Preferred year of the report.">
               </div>
+              <h4 class="px-3 mt-4">Summaries</h4>
+              <hr class="my-1">
+              <label class="d-block"><input type="checkbox" name="summaries[]" value="prev" checked> Previous Sales</label>
+              <label class="d-block"><input type="checkbox" name="summaries[]" value="curr" checked> Current Sales</label>
+              <label class="d-block"><input type="checkbox" name="summaries[]" value="cont"> Contract % and Service Fee</label>
+              <label class="d-block"><input type="checkbox" name="summaries[]" value="dlvs" checked> Number of Deliveries</label>
             </div>
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
@@ -292,6 +296,26 @@
               <br>
               <label class="d-block"><input type="radio" name="order" value="asc" checked> Ascending</label>
               <label class="d-block"><input type="radio" name="order" value="desc" required> Descending</label>
+            </div>
+          </div>
+          <div class="container-fluid bg-info text-light rounded pointer" data-toggle="collapse" data-target="#other">
+            <small><i class="fa fa-caret-down"></i> Other options</small>
+          </div>
+          <div class="row collapse" id="other">
+            <div class="col-6 my-2">
+              <h4 class="px-3">Header</h4>
+              <hr class="my-1">
+              <input class="form-control" type="text" name="company" value="Pandalivery" placeholder="Company name">
+              <input class="form-control" type="text" name="addr1" value="#5 Narra St., Mariano Village, Brgy. Balatas" placeholder="Street num Street name, Barangay">
+              <input class="form-control" type="text" name="addr2" value="Naga City, 4400 Camarines Sur" placeholder="City/Municipality, Postcode, Province">
+              <input class="form-control" type="email" name="company_email" value="pandalivery@pandalivery.com" placeholder="Company Email">
+              <input class="form-control" type="text" name="company_contact" value="0998-765-4321" placeholder="Company Phone/Tel">
+            </div>
+            <div class="col-6 my-2">
+              <h4 class="px-3">Footer</h4>
+              <hr class="my-1">
+              Prepared By
+              <input class="form-control" type="text" name="prepby" value="Juan Dela Cruz">
             </div>
           </div>
         </div>

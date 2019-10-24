@@ -78,6 +78,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Daily Sales Report';
 			$data['titleSupport'] = 'for the date '.date('M d, Y', strtotime($mods));
+			$data['prev'] = $this->transactions_model->getPrev($mods, $kind);
 		} elseif ($kind == 'monthly') {
 			$mods = $this->input->post('monthlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
@@ -85,6 +86,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Monthly Sales Report';
 			$data['titleSupport'] = 'for the month and year '.date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)));
+			$data['prev'] = $this->transactions_model->getPrev($mods, $kind);
 		} elseif ($kind == 'yearly') {
 			$mods = $this->input->post('yearlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
@@ -92,6 +94,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Yearly Sales Report';
 			$data['titleSupport'] = 'for the year '.$mods;
+			$data['prev'] = $this->transactions_model->getPrev($mods.'-01-01', $kind);
 		}
 
 		$order['def'] = $this->input->post('orderDefined');
@@ -107,13 +110,15 @@ class Transactions extends CI_Controller {
 		$totals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
 
 
+		$data['company'] = $this->input->post('company');
+		$data['addr1'] = $this->input->post('addr1');
+		$data['addr2'] = $this->input->post('addr2');
+		$data['company_email'] = $this->input->post('company_email');
+		$data['company_contact'] = $this->input->post('company_contact');
 		$data['transactions'] = $this->transactions_model->printThis($query);
 		$data['orders'] = $this->transactions_model->withThis($ordersQuery);
 		$data['totals'] = $this->transactions_model->andThis($totals);
 
 		$this->load->view('statics/print-page', $data);
-		// echo $query.'<br>';
-		// echo $ordersQuery.'<br>';
-		// echo $totals.'<br>';
 	}
 }

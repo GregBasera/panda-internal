@@ -19,11 +19,11 @@
       </div>
     <?php else: ?>
     <div class="container-fluid header">
-      <h1>Pandalivery Inc.</h1>
-      <p class="m-0 text-muted">#5 Narra St., Mariano Village, Brgy. Balatas</p>
-      <p class="m-0 text-muted">Naga City, 4400 Camarines Sur</p>
-      <p class="m-0 text-muted">Contact</p>
-      <p class="m-0 text-muted">Contact</p>
+      <h1><?php echo $company ?></h1>
+      <p class="m-0 text-muted"><?php echo $addr1 ?></p>
+      <p class="m-0 text-muted"><?php echo $addr2 ?></p>
+      <p class="m-0 text-muted"><?php echo $company_email ?></p>
+      <p class="m-0 text-muted"><?php echo $company_contact ?></p>
 
       <?php if(isset($partner_name)): ?>
         <h3 class="mt-4"><?php echo $partner_name ?></h3>
@@ -34,7 +34,7 @@
     <div class="container-fluid my-5">
       <div class="row">
         <div class="col-6">
-          <h5>Last Month's Sales (last month): <b>???</b></h5>
+          <h5>Last Month's Sales (last month): <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
           <h5>Current Month's Sales (curr month): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
           <h5>Contract Percentage: <b>???</b></h5>
           <h5>Monthly Service Fee (curr month): <b>???</b></h5>
@@ -86,5 +86,6 @@
     </table>
     <?php endif; ?>
   </body>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>

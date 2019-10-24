@@ -102,8 +102,9 @@ function removeItem(elem) {
 function getSubtotal() {
   var sum = 0.0;
   var fields = document.getElementsByName("i_price");
+  var quantity = document.getElementsByName("i_quantity");
   for(var q = 0; q < fields.length; q++) {
-    sum = sum + parseFloat(fields[q].value);
+    sum = sum + (parseFloat(fields[q].value) * parseFloat(quantity[q].value));
   }
   document.transaction.t_subtotal.value = sum.toFixed(2);
 }
