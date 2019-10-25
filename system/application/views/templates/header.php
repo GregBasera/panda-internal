@@ -18,8 +18,9 @@
   <body>
     <div class="" style="max-height:100vh;"><!-- wrapper. the closing tag is in the footer -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <img width="120px" class="navbar-brand" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
-      <!-- <a class="navbar-brand" href="<?php echo base_url() ?>">Pandalivery</a> -->
+      <a class="navbar-brand" href="<?php echo base_url() ?>">
+        <img width="120px" class="" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

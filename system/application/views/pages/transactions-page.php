@@ -19,7 +19,21 @@
     </div>
     <div class="col pl-0">
       <div class="container-fluid">
-        <h2><?php echo $title ?></h2>
+        <div class="row pb-2">
+          <div class="col-3">
+            <h2 class="m-0"><?php echo $title ?></h2>
+          </div>
+          <div class="col-6">
+            <input class="form-control" type="search" name="" value="">
+          </div>
+          <div class="col-3 d-flex justify-content-end">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-outline-secondary active">Daily</button>
+              <button type="button" class="btn btn-outline-secondary">Monthly</button>
+              <button type="button" class="btn btn-outline-secondary">Yearly</button>
+            </div>
+          </div>
+        </div>
       </div>
       <table class="table table-bordered table-sm table-hover">
         <thead>
@@ -74,7 +88,7 @@
               <td>₱ <?php echo $transaction['delivery_charge'] ?></td>
               <td>₱ <?php echo $transaction['total_transaction_price'] ?></td>
               <td>
-                <span class="badge badge-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="badge badge-info dropdown-toggle pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -138,7 +152,7 @@
           <div class="row mt-2">
             <div class="col">
               Nearby Landmarks/Specific Directions
-              <input class="form-control" type="text" name="c_directions" value="">
+              <input class="form-control" type="text" name="c_directions" value="--">
             </div>
           </div>
           <div class="row mt-2">
@@ -298,8 +312,9 @@
               <label class="d-block"><input type="radio" name="order" value="desc" required> Descending</label>
             </div>
           </div>
-          <div class="container-fluid bg-info text-light rounded pointer" data-toggle="collapse" data-target="#other">
+          <div class="container-fluid bg-light rounded pointer" data-toggle="collapse" data-target="#other">
             <small><i class="fa fa-caret-down"></i> Other options</small>
+            <hr class="m-0">
           </div>
           <div class="row collapse" id="other">
             <div class="col-6 my-2">
