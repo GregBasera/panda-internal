@@ -129,4 +129,13 @@ function kindToMod() {
   }
 }
 
+function reportSummary() {
+  if(document.Print.partner.value == '') {
+    document.Print.sumContract.checked = false;
+    document.Print.sumContract.disabled = true;
+  } else {
+    document.Print.sumContract.disabled = false;
+  }
+}
+
 console.log("transacions.js loaded");

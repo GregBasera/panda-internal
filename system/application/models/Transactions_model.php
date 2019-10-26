@@ -60,19 +60,19 @@ class Transactions_model extends CI_Model{
   public function getPrev($date, $kind) {
     if ($kind == 'daily') {
       $query = $this->db->query("
-        select date_sub('$date', interval 1 day) as date, sum(total_transaction_price) as previous
+        select 'Last Day`s Sales' as 'title', date_format(date_sub('$date', interval 1 day), '%M %d, %Y') as date, sum(total_transaction_price) as previous
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 day), '%'));
       ");
     } elseif ($kind == 'monthly') {
       $query = $this->db->query("
-        select date_sub('$date', interval 1 month) as date, sum(total_transaction_price) as previous
+        select 'Last Month`s Sales' as 'title', date_format(date_sub('$date', interval 1 month), '%M %Y') as date, sum(total_transaction_price) as previous
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 month), '%'));
       ");
     } elseif ($kind == 'yearly') {
       $query = $this->db->query("
-        select date_sub('$date', interval 1 year) as date, sum(total_transaction_price) as previous
+        select 'Last Year`s Sales' as 'title', date_format(date_sub('$date', interval 1 year), '%Y') as date, sum(total_transaction_price) as previous
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 year), '%'));
       ");

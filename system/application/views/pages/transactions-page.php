@@ -275,9 +275,9 @@
               Partner Name
               <select class="custom-select" name="partner" data-toggle="tooltip" data-placement="bottom"
                 title="Keep this field blank if you don't want a Partner specific report.">
-                <option value="">--blank--</option>
+                <option value="" onclick="reportSummary();">--blank--</option>
                 <?php foreach ($partners as $partner): ?>
-                  <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
+                  <option value="<?php echo $partner['partner_ID'] ?>" onclick="reportSummary();"><?php echo $partner['partner_name'] ?></option>
                 <?php endforeach; ?>
               </select>
               <div class="mt-2" id="dailyMod">
@@ -297,10 +297,10 @@
               </div>
               <h4 class="px-3 mt-4">Summaries</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="summaries[]" value="prev" checked> Previous Sales</label>
-              <label class="d-block"><input type="checkbox" name="summaries[]" value="curr" checked> Current Sales</label>
-              <label class="d-block"><input type="checkbox" name="summaries[]" value="cont"> Contract % and Service Fee</label>
-              <label class="d-block"><input type="checkbox" name="summaries[]" value="dlvs" checked> Number of Deliveries</label>
+              <label class="d-block"><input type="checkbox" name="sumPrev" value="prev" checked> Previous Sales</label>
+              <label class="d-block"><input type="checkbox" name="sumCurr" value="curr" checked> Current Sales</label>
+              <label class="d-block"><input type="checkbox" name="sumContract" value="cont" disabled> Contract % and Service Fee</label>
+              <label class="d-block"><input type="checkbox" name="sumDlvs" value="dlvs" checked> Number of Deliveries</label>
             </div>
             <div class="col-4">
               <h4 class="px-3">Order by</h4>

@@ -34,11 +34,13 @@
     <div class="container-fluid my-5">
       <div class="row">
         <div class="col-6">
-          <h5>Last Month's Sales (<?php echo $prev[0]['date'] ?>): <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
-          <h5>Current Month's Sales (curr month): <b>₱ <?php echo number_format($totals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <?php if ($prev != ''): ?>
+            <h5><?php echo $prev[0]['title'] ?> (<?php echo $prev[0]['date'] ?>): <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
+          <h5>Current Month's Sales (<?php echo $blankTotals[0]['date'] ?>): <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
           <h5>Contract Percentage: <b>???</b></h5>
           <h5>Monthly Service Fee (curr month): <b>???</b></h5>
-          <h5>Number of Deliveries (curr month): <b><?php echo $totals[0]['Number of Transactions'] ?></b></h5>
+          <h5>Number of Deliveries (curr month): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
         </div>
       </div>
     </div>
