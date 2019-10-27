@@ -37,10 +37,16 @@
           <?php if ($prev != ''): ?>
             <h5><?php echo $prev[0]['title'] ?> (<?php echo $prev[0]['date'] ?>): <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
-          <h5>Current Month's Sales (<?php echo $blankTotals[0]['date'] ?>): <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
-          <h5>Contract Percentage: <b>???</b></h5>
-          <h5>Monthly Service Fee (curr month): <b>???</b></h5>
-          <h5>Number of Deliveries (curr month): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
+          <?php if ($blankTotals != ''): ?>
+            <h5><?php echo "Current ".$curr['possessive'].' Sales: ('.$curr['date'].'):' ?> <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
+          <?php if ($partnerTotals != ''): ?>
+            <h5>Contract Percentage: <b><?php echo $partnerTotals[0]['contract'] ?></b></h5>
+            <h5><?php echo $partner_name."'s Service Fee for: " ?> (<?php echo $curr['date'] ?>): ₱ <b><?php echo number_format($partnerTotals[0]['service_fee'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
+          <?php if ($blankTotals != ''): ?>
+            <h5>Number of Deliveries: (<?php echo $curr['date'] ?>): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -86,6 +92,18 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+
+        </div>
+        <div class="col-6">
+          Prepared By:
+          <hr class="mt-5">
+          <h6 class="text-center"><?php echo $prepby.', '.$posi ?></h6>
+        </div>
+      </div>
+    </div>
     <?php endif; ?>
   </body>
 

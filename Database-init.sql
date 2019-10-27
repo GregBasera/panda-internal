@@ -12,6 +12,7 @@ CREATE TABLE PARTNERS (
   owner_contact           varchar(15)      not null,
   owner_email             varchar(50)      not null,
   contract_percentage     float            not null,
+  contract_execution      date             not null,
 
   constraint primary key (partner_ID)
 );
@@ -42,12 +43,12 @@ CREATE TABLE ORDERS (
   quantity          int               not null,
   price             float             not null,
 
-  constraint foreign key (transaction_ID) REFERENCES TRANSACTIONS (transaction_ID)
+  constraint foreign key (transaction_ID) REFERENCES TRANSACTIONS (transaction_ID) ON DELETE CASCADE
 );
 
 
-INSERT INTO PARTNERS (partner_ID, partner_name, partner_address, partner_contact, partner_email, owner_name, owner_contact, owner_email, contract_percentage) VALUES
-("pt5da6e9f413834", "resturanSIA", "sa bulsa ko", "09123456789", "resturanSIA@gmail.com", "Justin Sia", "09123456789", "owner@gmail.com", 30);
+INSERT INTO PARTNERS (partner_ID, partner_name, partner_address, partner_contact, partner_email, owner_name, owner_contact, owner_email, contract_percentage, contract_execution) VALUES
+("pt5da6e9f413834", "resturanSIA", "sa bulsa ko", "09123456789", "resturanSIA@gmail.com", "Justin Sia", "09123456789", "owner@gmail.com", 0.30, "2019-10-16");
 
 INSERT INTO TRANSACTIONS (transaction_ID, order_number, encoded_by, transaction_date, customer_fname, customer_lname, customer_contact, delivery_address, landmark_directions, partner_ID, subtotal, delivery_charge, total_transaction_price) VALUES
 ("5da6e5901e167", 1, "Gweg", "2019-10-16", "Jude", "Buelva", "09123456789", "Somewhere over the rainbow", "Look for the leprechaun he will take you there", "pt5da6e9f413834", 600, 55, 655);

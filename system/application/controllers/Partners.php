@@ -22,7 +22,8 @@ class Partners extends CI_Controller {
 	    'owner_name' => $this->input->post('o_name'),
 	    'owner_contact' => $this->input->post('o_contact'),
 	    'owner_email' => $this->input->post('o_email'),
-	    'contract_percentage' => $this->input->post('p_percentage')
+			'contract_percentage' => $this->input->post('p_percentage'),
+	    'contract_execution' => $this->input->post('p_execution')
 		);
 
 		$this->partners_model->addPartner($partnerData);

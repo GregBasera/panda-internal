@@ -13,7 +13,8 @@ function addPartner() {
     'o_name' : document.Partner.o_name.value,
     'o_contact' : document.Partner.o_contact.value,
     'o_email' : document.Partner.o_email.value,
-    'p_percentage' : document.Partner.p_percentage.value
+    'p_percentage' : document.Partner.p_percentage.value,
+    'p_execution' : document.Partner.p_execution.value
   };
 
   Object.keys(partner).forEach(function (key) {

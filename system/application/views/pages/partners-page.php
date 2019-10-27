@@ -33,6 +33,7 @@
             <th>Owner Contact</th>
             <th>Owner Email</th>
             <th>Contract Percentage</th>
+            <th>Contract Execution</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -60,6 +61,7 @@
               </td>
               <td><?php echo $partner['owner_email'] ?></td>
               <td><?php echo $partner['contract_percentage'] ?></td>
+              <td><?php echo date('M d, Y', strtotime($partner['contract_execution'])) ?></td>
               <td>
                 <span class="badge badge-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-ellipsis-h"></i>
@@ -118,17 +120,21 @@
             </div>
           </div>
           <div class="row mt-2">
-            <div class="col-3 pr-1">
+            <div class="col pr-1">
               Owner Contact
               <input class="form-control text-center" type="text" name="o_contact" value="">
             </div>
-            <div class="col-5 px-1">
+            <div class="col px-1">
               Owner Email
               <input class="form-control text-center" type="text" name="o_email" value="">
             </div>
-            <div class="col-4 pl-1">
+            <div class="col px-1">
               Contract Percentage
-              <input class="form-control text-center" type="text" name="p_percentage" value="">
+              <input class="form-control text-center" type="text" name="p_percentage" value="" placeholder="Ex. 0.134">
+            </div>
+            <div class="col pl-1">
+              Contract Execution
+              <input class="form-control text-center" type="date" name="p_execution" value="">
             </div>
           </div>
         </form>

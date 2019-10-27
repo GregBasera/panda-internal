@@ -5,6 +5,8 @@ $('#dailyMod').hide();
 $('#monthlyMod').hide();
 $('#yearlyMod').hide();
 
+$('#del_spinner').hide();
+
 function addTransaction() {
   $('#transactionFormAlert').hide();
   var isValid = true;
@@ -136,6 +138,26 @@ function reportSummary() {
   } else {
     document.Print.sumContract.disabled = false;
   }
+}
+
+function deleteModalTriggd(id) {
+  $('#t_delete').attr('onclick', 't_delete("'+id+'");')
+}
+
+function t_delete(id) {
+  console.log(id);
+  var data = {'t_id' : id};
+  $.ajax({
+    type: "POST",
+    url: window.origin + "/transactions/t_delete",
+    data: data,
+    beforeSend: function() {
+      $('#del_spinner').show();
+    },
+    success: function(result) {
+      $(location).attr('href', window.origin + '/transactions');
+    }
+  });
 }
 
 console.log("transacions.js loaded");

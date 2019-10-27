@@ -24,14 +24,26 @@
             <h2 class="m-0"><?php echo $title ?></h2>
           </div>
           <div class="col-6">
-            <input class="form-control" type="search" name="" value="">
+            <input class="form-control" type="search" name="" value="" placeholder="Search">
           </div>
           <div class="col-3 d-flex justify-content-end">
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-secondary active">Daily</button>
-              <button type="button" class="btn btn-outline-secondary">Monthly</button>
-              <button type="button" class="btn btn-outline-secondary">Yearly</button>
-            </div>
+            <ul class="pagination m-0">
+              <li class="page-item">
+                <a class="page-link" href="#!" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#!">1</a></li>
+              <li class="page-item"><a class="page-link" href="#!">2</a></li>
+              <li class="page-item"><a class="page-link" href="#!">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#!" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -95,15 +107,39 @@
                   <a class="dropdown-item" href="#">
                     <i class="fa fa-pen"></i> Update/Edit
                   </a>
-                  <a class="dropdown-item text-danger" href="#">
+                  <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target=".delete-modal" onclick="deleteModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-trash"></i> Delete
-                  </a>
+                  </button>
                 </div>
               </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- Delete a transaction modal -->
+<div class="modal fade delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete a Transaction Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        You are about to delete a transaction record.<br>This CANNOT be undone.
+      </div>
+      <div class="modal-footer">
+        <div class="container-fluid">
+          <div class="spinner-border spinner-border-sm" id="del_spinner"></div>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="t_delete">DELETE</button>
+      </div>
     </div>
   </div>
 </div>
@@ -298,9 +334,9 @@
               <h4 class="px-3 mt-4">Summaries</h4>
               <hr class="my-1">
               <label class="d-block"><input type="checkbox" name="sumPrev" value="prev" checked> Previous Sales</label>
-              <label class="d-block"><input type="checkbox" name="sumCurr" value="curr" checked> Current Sales</label>
+              <label class="d-block"><input type="checkbox" name="sumCurr" value="curr" checked> Curr. Sales and No. of Deliveries</label>
               <label class="d-block"><input type="checkbox" name="sumContract" value="cont" disabled> Contract % and Service Fee</label>
-              <label class="d-block"><input type="checkbox" name="sumDlvs" value="dlvs" checked> Number of Deliveries</label>
+              <!-- <label class="d-block"><input type="checkbox" name="sumDlvs" value="dlvs" checked> Number of Deliveries</label> -->
             </div>
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
@@ -331,6 +367,8 @@
               <hr class="my-1">
               Prepared By
               <input class="form-control" type="text" name="prepby" value="Juan Dela Cruz">
+              Position
+              <input class="form-control" type="text" name="posi" value="CFO">
             </div>
           </div>
         </div>

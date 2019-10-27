@@ -45,18 +45,6 @@ class Transactions_model extends CI_Model{
     return $result;
   }
 
-  public function withThis($q) {
-    $query = $this->db->query($q);
-    $result = $query->result_array();
-    return $result;
-  }
-
-  public function andThis($q) {
-    $query = $this->db->query($q);
-    $result = $query->result_array();
-    return $result;
-  }
-
   public function getPrev($date, $kind) {
     if ($kind == 'daily') {
       $query = $this->db->query("
@@ -80,5 +68,9 @@ class Transactions_model extends CI_Model{
 
     $result = $query->result_array();
     return $result;
+  }
+
+  public function deleteTransaction($id) {
+    $this->db->delete('TRANSACTIONS', array('transaction_ID' => $id));
   }
 }

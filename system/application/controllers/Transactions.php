@@ -79,6 +79,10 @@ class Transactions extends CI_Controller {
 			$data['kind'] = 'Daily Sales Report';
 			$data['titleSupport'] = 'for the date '.date('M d, Y', strtotime($mods));
 			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods, $kind) : '';
+			$data['curr'] = array(
+				'possessive' =>  "Day's",
+				'date' => date('M d, Y', strtotime($mods))
+			);
 		} elseif ($kind == 'monthly') {
 			$mods = $this->input->post('monthlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
@@ -87,6 +91,10 @@ class Transactions extends CI_Controller {
 			$data['kind'] = 'Monthly Sales Report';
 			$data['titleSupport'] = 'for the month and year '.date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)));
 			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods, $kind) : '';
+			$data['curr'] = array(
+				'possessive' =>  "Month's",
+				'date' => date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)))
+			);
 		} elseif ($kind == 'yearly') {
 			$mods = $this->input->post('yearlyMod');
 			$data['isDefault'] = ($mods == '') ? true : false;
@@ -95,6 +103,10 @@ class Transactions extends CI_Controller {
 			$data['kind'] = 'Yearly Sales Report';
 			$data['titleSupport'] = 'for the year '.$mods;
 			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods.'-01-01', $kind) : '';
+			$data['curr'] = array(
+				'possessive' =>  "Year's",
+				'date' => $mods
+			);
 		}
 
 		$order['def'] = $this->input->post('orderDefined');
@@ -107,7 +119,7 @@ class Transactions extends CI_Controller {
 
 		$query = 'select '.$select.' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID'.$where.' order by '.$orderby.';';
 		$ordersQuery = 'select t.transaction_ID, o.quantity, o.item_name, o.price from TRANSACTIONS t, ORDERS o where t.transaction_ID = o.transaction_ID '.$where.';';
-		$blankTotals = "select '$mods' as 'date', count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
+		$blankTotals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
 		$partnerTotals = "select avg(p.contract_percentage) as 'contract', sum(t.total_transaction_price) * avg(p.contract_percentage) as 'service_fee' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
 
 
@@ -117,11 +129,17 @@ class Transactions extends CI_Controller {
 		$data['company_email'] = $this->input->post('company_email');
 		$data['company_contact'] = $this->input->post('company_contact');
 		$data['transactions'] = $this->transactions_model->printThis($query);
-		$data['orders'] = $this->transactions_model->withThis($ordersQuery);
-		$data['blankTotals'] = $this->transactions_model->andThis($blankTotals);
-		$data['blankTotals'] = $this->transactions_model->andThis($blankTotals);
-		$data['partnerTotals'] = $this->transactions_model->andThis($partnerTotals);
+		$data['orders'] = $this->transactions_model->printThis($ordersQuery);
+		$data['blankTotals'] = ($this->input->post('sumCurr')) ? $this->transactions_model->printThis($blankTotals) : '';
+		$data['partnerTotals'] = ($this->input->post('sumContract')) ? $this->transactions_model->printThis($partnerTotals) : '';
+		$data['prepby'] = $this->input->post('prepby');
+		$data['posi'] = $this->input->post('posi');
 
 		$this->load->view('statics/print-page', $data);
+	}
+
+	public function t_delete() {
+		$t_id = $this->input->post('t_id');
+		$this->transactions_model->deleteTransaction($t_id);
 	}
 }
