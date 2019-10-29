@@ -17,22 +17,28 @@
   </head>
   <body>
     <div class="" style="max-height:100vh;"><!-- wrapper. the closing tag is in the footer -->
+    <?php if ($title != 'Sign-in'): ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="<?php echo base_url() ?>">
         <img width="120px" class="" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item <?php echo ($title == 'Transactions') ? 'active' : '' ?>">
-            <a class="nav-link" href="<?php echo base_url().'transactions' ?>">Transactions</a>
-          </li>
-          <li class="nav-item <?php echo ($title == 'Partners') ? 'active' : '' ?>">
-            <a class="nav-link" href="<?php echo base_url().'partners' ?>">Partners</a>
-          </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item <?php echo ($title == 'Transactions') ? 'active' : '' ?>">
+          <a class="nav-link" href="<?php echo base_url().'transactions' ?>">Transactions</a>
+        </li>
+        <li class="nav-item <?php echo ($title == 'Partners') ? 'active' : '' ?>">
+          <a class="nav-link" href="<?php echo base_url().'partners' ?>">Partners</a>
+        </li>
+      </ul>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <b><?php echo $user ?></b>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="<?php echo base_url().'userlog/signout' ?>" class="dropdown-item">Sign-out</a>
+        </div>
       </div>
     </nav>
+    <?php endif; ?>

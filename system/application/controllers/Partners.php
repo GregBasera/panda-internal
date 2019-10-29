@@ -2,8 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Partners extends CI_Controller {
+	public function __construct() {
+    parent::__construct();
+		if($_SESSION['role'] != 'staff') {
+			redirect('userlog/view', 'refresh');
+		}
+  }
+
 	public function index() {
     $page['title'] = 'Partners';
+		$page['user'] = $_SESSION['user'];
 
 		$data['partners'] = $this->partners_model->getAllPartners();
 

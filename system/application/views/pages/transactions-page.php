@@ -7,11 +7,6 @@
         </button>
       </div>
       <div class="container-fluid p-0 d-flex justify-content-center">
-        <button class="btn btn-success mb-2">
-          <i class="fa fa-search" data-toggle="tooltip" data-placement="right" title="Search"></i>
-        </button>
-      </div>
-      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-dark mb-2" data-toggle="modal" data-target=".print-report-modal">
           <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
         </button>
@@ -24,7 +19,9 @@
             <h2 class="m-0"><?php echo $title ?></h2>
           </div>
           <div class="col-6">
-            <input class="form-control" type="search" name="" value="" placeholder="Search">
+            <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
+              <input class="form-control" type="search" value="" name="keyword" placeholder="Search">
+            </form>
           </div>
           <div class="col-3 d-flex justify-content-end">
             <ul class="pagination m-0">
@@ -47,11 +44,13 @@
           </div>
         </div>
       </div>
+
       <table class="table table-bordered table-sm table-hover">
         <thead>
           <tr class="text-center">
             <!-- <th>ID</th> -->
             <th>Encoded</th>
+            <th>Enco. by</th>
             <th>Ord. No.</th>
             <th>Disp. by</th>
             <th>Transaction Date</th>
@@ -73,8 +72,9 @@
             <tr class="text-center">
               <!-- <td><?php echo $transaction['transaction_ID'] ?></td> -->
               <td><?php echo date('M d, Y h:i a', strtotime($transaction['date_encoded'])) ?></td>
-              <td><?php echo $transaction['order_number'] ?></td>
               <td><?php echo $transaction['encoded_by'] ?></td>
+              <td><?php echo $transaction['order_number'] ?></td>
+              <td><?php echo $transaction['dispatched_by'] ?></td>
               <td><?php echo date('M d, Y h:i a', strtotime($transaction['transaction_date'])) ?></td>
               <td><?php echo $transaction['customer_fname'] ?></td>
               <td><?php echo $transaction['customer_lname'] ?></td>
@@ -208,7 +208,7 @@
               Order/Items
               <div class="row mt-2">
                 <div class="col-3 pr-1">
-                  <input class="form-control form-control-sm text-center" type="number" name="i_quantity" value="" placeholder="Quantity">
+                  <input class="form-control form-control-sm text-center" type="number" name="i_quantity" value="" placeholder="Quantity" onkeyup="getSubtotal();getGrandT();">
                 </div>
                 <div class="col px-1">
                   <input class="form-control form-control-sm" type="text" name="i_name" value="" placeholder="Item Name">
@@ -233,17 +233,23 @@
               Delivery Charge
               <input class="form-control text-center" type="text" name="t_dcharge" value="" onkeyup="getGrandT();">
             </div>
-            <div class="col px-1">
+            <div class="col pl-1">
               Total Price
               <input class="form-control text-center" type="text" name="t_grandT" value="" readonly>
             </div>
-            <div class="col-2 px-1">
+          </div>
+          <div class="row mt-2">
+            <div class="col pr-1">
+              Encoded By
+              <input class="form-control text-center" type="text" name="t_encoded_by" value="<?php echo $name ?>" readonly>
+            </div>
+            <div class="col px-1">
               Order Number
               <input class="form-control text-center" type="number" name="t_ordernum" value="">
             </div>
             <div class="col pl-1">
-              Dispatcher
-              <input class="form-control text-center" type="text" name="t_dispatcher" value="">
+              Dispatched by
+              <input class="form-control text-center" type="text" name="t_dispatched_by" value="">
             </div>
           </div>
         </div>

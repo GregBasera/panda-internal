@@ -41,7 +41,7 @@
             <h5><?php echo "Current ".$curr['possessive'].' Sales: ('.$curr['date'].'):' ?> <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
           <?php if ($partnerTotals != ''): ?>
-            <h5>Contract Percentage: <b><?php echo $partnerTotals[0]['contract'] ?></b></h5>
+            <h5>Contract Percentage: <b><?php echo number_format($partnerTotals[0]['contract'], 3, '.', '') ?></b></h5>
             <h5><?php echo $partner_name."'s Service Fee for: " ?> (<?php echo $curr['date'] ?>): ₱ <b><?php echo number_format($partnerTotals[0]['service_fee'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
           <?php if ($blankTotals != ''): ?>
