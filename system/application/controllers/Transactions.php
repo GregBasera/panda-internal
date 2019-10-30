@@ -9,12 +9,13 @@ class Transactions extends CI_Controller {
 		}
   }
 
-	public function index() {
+	public function view($p = 1) {
 		$page['title'] = 'Transactions';
     $page['user'] = $_SESSION['user'];
 
 		$data['name'] = $_SESSION['user'];
-		$data['transactions'] = $this->transactions_model->getAll();
+		$allT = $this->transactions_model->getAll();
+		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();
 

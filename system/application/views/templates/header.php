@@ -25,7 +25,7 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item <?php echo ($title == 'Transactions') ? 'active' : '' ?>">
-          <a class="nav-link" href="<?php echo base_url().'transactions' ?>">Transactions</a>
+          <a class="nav-link" href="<?php echo base_url().'transactions/view' ?>">Transactions</a>
         </li>
         <li class="nav-item <?php echo ($title == 'Partners') ? 'active' : '' ?>">
           <a class="nav-link" href="<?php echo base_url().'partners' ?>">Partners</a>
