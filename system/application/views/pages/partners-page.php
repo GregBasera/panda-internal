@@ -7,11 +7,6 @@
         </button>
       </div>
       <div class="container-fluid p-0 d-flex justify-content-center">
-        <button class="btn btn-success mb-2">
-          <i class="fa fa-search" data-toggle="tooltip" data-placement="right" title="Search"></i>
-        </button>
-      </div>
-      <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-dark mb-2">
           <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
         </button>
@@ -19,8 +14,19 @@
     </div>
     <div class="col pl-0">
       <div class="container-fluid">
-        <h2><?php echo $title ?></h2>
+        <div class="row pb-2">
+          <div class="col-3">
+            <h2 class="m-0"><?php echo $title ?></h2>
+          </div>
+          <div class="col-6">
+            <input class="form-control" type="search" value="" placeholder="Search">
+          </div>
+          <div class="col-3 d-flex justify-content-end">
+            <!-- space -->
+          </div>
+        </div>
       </div>
+
       <table class="table table-bordered table-sm table-hover">
         <thead>
           <tr class="text-center">

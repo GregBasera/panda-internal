@@ -2,9 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transactions extends CI_Controller {
-	public function index() {
-    $page['title'] = 'Transactions';
+	public function __construct() {
+    parent::__construct();
+		if($_SESSION['role'] != 'staff') {
+			redirect('userlog/view', 'refresh');
+		}
+  }
 
+	public function index() {
+		$page['title'] = 'Transactions';
+    $page['user'] = $_SESSION['user'];
+
+		$data['name'] = $_SESSION['user'];
 		$data['transactions'] = $this->transactions_model->getAll();
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();
@@ -141,5 +150,12 @@ class Transactions extends CI_Controller {
 	public function t_delete() {
 		$t_id = $this->input->post('t_id');
 		$this->transactions_model->deleteTransaction($t_id);
+	}
+
+	public function search() {
+		$s_keywords = $this->input->post('keyword');
+
+		$s = explode($s_keywords, ' ');
+		print_r($s);
 	}
 }

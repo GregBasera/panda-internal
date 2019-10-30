@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400&display=swap');
 
+th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: lightgray;
+}
+
 td {
   font-family: 'Roboto Condensed', sans-serif;
   vertical-align: middle !important;
@@ -9,29 +16,24 @@ td {
   cursor: pointer;
 }
 
-.table-fixed{
-  width: 100%;
-  background-color: #f3f3f3;
-  tbody{
-    height:200px;
-    overflow-y:auto;
-    width: 100%;
-    }
-  thead,tbody,tr,td,th{
-    display:block;
+.sticky-on-page {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+/* Annimations */
+.slide-down {
+  animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@keyframes scale-in-hor-center {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
   }
-  tbody{
-    td{
-      float:left;
-    }
-  }
-  thead {
-    tr{
-      th{
-        float:left;
-       background-color: #f39c12;
-       border-color:#e67e22;
-      }
-    }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
   }
 }
