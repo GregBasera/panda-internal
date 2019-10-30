@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      <table class="table table-bordered table-sm table-hover">
+      <table class="table table-bordered table-sm table-hover table-fixed">
         <thead>
           <tr class="text-center">
             <!-- <th>ID</th> -->
@@ -104,9 +104,9 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="#">
+                  <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-pen"></i> Update/Edit
-                  </a>
+                  </button>
                   <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target=".delete-modal" onclick="deleteModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-trash"></i> Delete
                   </button>
@@ -116,6 +116,30 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- Edit a transaction modal -->
+<div class="modal fade edit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update/Edit a Transaction Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        update pa ba?
+      </div>
+      <div class="modal-footer">
+        <div class="container-fluid">
+          <div class="spinner-border spinner-border-sm" id="edit_spinner"></div>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="t_edit">Update</button>
+      </div>
     </div>
   </div>
 </div>
@@ -138,7 +162,7 @@
           <div class="spinner-border spinner-border-sm" id="del_spinner"></div>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" id="t_delete">DELETE</button>
+        <button type="button" class="btn btn-danger" id="t_delete">Delete</button>
       </div>
     </div>
   </div>

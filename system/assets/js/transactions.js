@@ -6,6 +6,7 @@ $('#monthlyMod').hide();
 $('#yearlyMod').hide();
 
 $('#del_spinner').hide();
+$('#edit_spinner').hide();
 
 function addTransaction() {
   $('#transactionFormAlert').hide();
@@ -144,6 +145,10 @@ function deleteModalTriggd(id) {
   $('#t_delete').attr('onclick', 't_delete("'+id+'");')
 }
 
+function editModalTriggd(id) {
+  $('#t_edit').attr('onclick', 't_edit("'+id+'");')
+}
+
 function t_delete(id) {
   console.log(id);
   var data = {'t_id' : id};
@@ -158,6 +163,10 @@ function t_delete(id) {
       $(location).attr('href', window.origin + '/transactions');
     }
   });
+}
+
+function t_edit(id) {
+  console.log(id);
 }
 
 console.log("transacions.js loaded");
