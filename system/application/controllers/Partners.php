@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Partners extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		if($_SESSION['role'] != 'staff') {
+		if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
 			redirect('userlog/view', 'refresh');
 		}
   }

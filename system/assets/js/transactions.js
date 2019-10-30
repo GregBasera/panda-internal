@@ -24,7 +24,8 @@ function addTransaction() {
     't_dcharge' : document.transaction.t_dcharge.value,
     't_grandT' : document.transaction.t_grandT.value,
     't_ordernum' : document.transaction.t_ordernum.value,
-    't_dispatcher' : document.transaction.t_dispatcher.value
+    't_dispatched_by' : document.transaction.t_dispatched_by.value,
+    't_encoded_by' : document.transaction.t_encoded_by.value
   };
 
   var order = new Array(document.getElementsByName("i_price").length);

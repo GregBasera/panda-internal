@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transactions extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		if($_SESSION['role'] != 'staff') {
+		if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
 			redirect('userlog/view', 'refresh');
 		}
   }
@@ -30,7 +30,8 @@ class Transactions extends CI_Controller {
 		$transactionData = array(
 			'transaction_ID' => uniqid(),
 		  'order_number' => $t['t_ordernum'],
-		  'encoded_by' => $t['t_dispatcher'],
+		  'encoded_by' => $t['t_encoded_by'],
+			'dispatched_by' => $t['t_dispatched_by'],
 		  'transaction_date' => $t['t_datetime'],
 		  'customer_fname' => $t['c_fname'],
 		  'customer_lname' => $t['c_lname'],
@@ -157,5 +158,6 @@ class Transactions extends CI_Controller {
 
 		$s = explode($s_keywords, ' ');
 		print_r($s);
+		echo " This search module is not yet working, still working on it... -Developer";
 	}
 }
