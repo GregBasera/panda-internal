@@ -1,6 +1,9 @@
 $('#partnerFormAlert').hide();
 $('#spinner').hide();
 
+$('#del_spinner').hide();
+
+
 function addPartner() {
   $('#partnerFormAlert').hide();
   var isValid = true;
@@ -53,6 +56,26 @@ function addPartner() {
       }
     });
   }
+}
+
+function delPartnerTrigg(id) {
+  $('#p_delete').attr('onclick', "p_delete('"+id+"')");
+}
+
+function p_delete(id) {
+  console.log(id);
+  var data = {'p_id' : id};
+  $.ajax({
+    type: "POST",
+    url: window.origin + "/partners/p_delete",
+    data: data,
+    beforeSend: function() {
+      $('#del_spinner').show();
+    },
+    success: function(result) {
+      $(location).attr('href', window.origin + '/partners');
+    }
+  });
 }
 
 console.log("patners.js loaded");

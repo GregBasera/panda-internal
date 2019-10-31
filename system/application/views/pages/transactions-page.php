@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row py-2">
-    <div class="col-auto">
+    <div class="col-auto pr-0 d-none d-sm-block">
       <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-primary mb-2" data-toggle="modal" data-target=".add-transac-modal">
           <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Transaction"></i>
@@ -12,39 +12,39 @@
         </button>
       </div>
     </div>
-    <div class="col pl-0">
-      <div class="container-fluid">
+
+    <div class="col">
+      <div class="container-fluid pr-0 pr-sm-3">
         <div class="row pb-2">
-          <div class="col-3">
-            <h2 class="m-0"><?php echo $title ?></h2>
+          <div class="col">
+            <h2 class="m-0 d-none d-sm-block"><?php echo $title ?></h2>
+            <div class="d-flex justify-content-start d-block d-sm-none">
+              <button class="btn btn-primary mr-2" data-toggle="modal" data-target=".add-transac-modal">
+                <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Transaction"></i>
+              </button>
+              <button class="btn btn-dark mr-2" data-toggle="modal" data-target=".print-report-modal">
+                <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
+              </button>
+            </div>
           </div>
-          <div class="col-6">
-            <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
+          <div class="col-6 d-none d-sm-block">
+            <!-- <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
               <input class="form-control" type="search" value="" name="keyword" placeholder="Search">
-            </form>
+            </form> -->
           </div>
-          <div class="col-3 d-flex justify-content-end">
-            <ul class="pagination m-0">
-              <li class="page-item">
-                <a class="page-link" href="#!" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#!">1</a></li>
-              <li class="page-item"><a class="page-link" href="#!">2</a></li>
-              <li class="page-item"><a class="page-link" href="#!">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#!" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
+          <div class="col d-flex align-items-center justify-content-end">
+            <ul class="pagination pagination-sm m-0">
+              <li class="page-item"><a class="page-link <?php echo ($act_page - 5 <= 0) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page - 5) ?>"><span>&laquo;</span></a></li>
+              <li class="page-item"><a class="page-link <?php echo ($act_page - 2 <= 0) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page - 2) ?>"><?php echo $act_page - 2 ?></a></li>
+              <li class="page-item"><a class="page-link <?php echo ($act_page - 1 <= 0) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page - 1) ?>"><?php echo $act_page - 1 ?></a></li>
+              <li class="page-item active"><a class="page-link" href="<?php echo base_url().'transactions/view/'.$act_page ?>"><?php echo $act_page ?></a></li>
+              <li class="page-item"><a class="page-link <?php echo ($act_page + 1 > $pages) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page + 1) ?>"><?php echo $act_page + 1 ?></a></li>
+              <li class="page-item"><a class="page-link <?php echo ($act_page + 2 > $pages) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page + 2) ?>"><?php echo $act_page + 2 ?></a></li>
+              <li class="page-item"><a class="page-link <?php echo ($act_page + 5 > $pages) ? 'd-none' : '' ?>" href="<?php echo base_url().'transactions/view/'.($act_page + 5) ?>"><span>&raquo;</span></a></li>
             </ul>
           </div>
         </div>
       </div>
-
       <table class="table table-bordered table-sm table-hover">
         <thead>
           <tr class="text-center">
@@ -83,7 +83,7 @@
               <td class="text-left"><?php echo $transaction['landmark_directions'] ?></td>
               <td><?php echo $transaction['partner_name'] ?></td>
               <td>
-                <span class="badge badge-success" data-toggle="popover" data-placement="right"
+                <span class="badge badge-success pointer" data-toggle="popover" data-placement="right"
                   data-html="true" data-content="
                     <?php foreach ($orders as $item): ?>
                       <?php if ($item['transaction_ID'] == $transaction['transaction_ID']): ?>
@@ -104,9 +104,9 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
+                  <!-- <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-pen"></i> Update/Edit
-                  </button>
+                  </button> -->
                   <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target=".delete-modal" onclick="deleteModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-trash"></i> Delete
                   </button>
@@ -269,7 +269,7 @@
             </div>
             <div class="col px-1">
               Order Number
-              <input class="form-control text-center" type="number" name="t_ordernum" value="">
+              <input class="form-control text-center" type="number" name="t_ordernum" min="1" value="">
             </div>
             <div class="col pl-1">
               Dispatched by
@@ -300,7 +300,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="" name="Print" target="_blank" action="transactions/print" method="post">
+      <form class="" name="Print" target="_blank" action="<?php echo base_url().'transactions/print' ?>" method="post">
         <div class="modal-body">
           <h4 class="px-3">Columns to be printed</h4>
           <hr class="my-1">
@@ -308,8 +308,9 @@
             <div class="col-4">
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_ID as 'ID'"> Transaction ID</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.date_encoded as 'Encoded'"> Date Encoded</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Enco. by'" checked> Encoded By</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.order_number as 'Ord. No'" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Disp. by'" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.dispatched_by as 'Disp. by'" checked> Dispatched By</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_date as 'Transaction Date'" checked> Transaction Date</label>
             </div>
             <div class="col-4">

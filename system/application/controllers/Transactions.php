@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transactions extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
+		try {
+			if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
+				redirect('userlog/view', 'refresh');
+			}
+		} catch (Exception $e) {
 			redirect('userlog/view', 'refresh');
 		}
   }
@@ -15,6 +19,8 @@ class Transactions extends CI_Controller {
 
 		$data['name'] = $_SESSION['user'];
 		$allT = $this->transactions_model->getAll();
+		$data['pages'] = ceil(sizeof($allT)/25);
+		$data['act_page'] = $p;
 		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();

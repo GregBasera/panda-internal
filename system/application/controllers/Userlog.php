@@ -22,7 +22,7 @@ class Userlog extends CI_Controller {
       $_SESSION['user'] = $name;
       $_SESSION['role'] = $verd;
 
-      redirect('transactions');
+      redirect('transactions/view');
     } else {
       $this->view('e');
     }

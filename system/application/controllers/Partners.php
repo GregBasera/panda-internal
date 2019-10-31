@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Partners extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
+		try {
+			if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
+				redirect('userlog/view', 'refresh');
+			}
+		} catch (Exception $e) {
 			redirect('userlog/view', 'refresh');
 		}
   }
@@ -35,5 +39,10 @@ class Partners extends CI_Controller {
 		);
 
 		$this->partners_model->addPartner($partnerData);
+	}
+
+	public function p_delete() {
+		$p_id = $this->input->post('p_id');
+		$this->partners_model->deletePartner($p_id);
 	}
 }

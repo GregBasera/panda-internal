@@ -16,11 +16,12 @@
     <?php endif; ?>
   </head>
   <body>
-    <div class="" style="max-height:100vh;"><!-- wrapper. the closing tag is in the footer -->
+    <div class="" style=""><!-- wrapper. the closing tag is in the footer -->
     <?php if ($title != 'Sign-in'): ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="<?php echo base_url() ?>">
-        <img width="120px" class="" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
+        <img width="120px" class="d-none d-sm-block" src="<?php echo base_url().'assets/imgs/wgt.png' ?>" alt="">
+        <img width="25px" class="d-block d-sm-none" src="<?php echo base_url().'assets/imgs/head-logo.png' ?>" alt="">
       </a>
 
       <ul class="navbar-nav mr-auto">
