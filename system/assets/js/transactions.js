@@ -146,8 +146,14 @@ function deleteModalTriggd(id) {
   $('#t_delete').attr('onclick', 't_delete("'+id+'");')
 }
 
-function editModalTriggd(id) {
-  $('#t_edit').attr('onclick', 't_edit("'+id+'");')
+function editModalTriggd(id, elem) {
+  $('#t_edit').attr('onclick', 't_edit("'+id+'");');
+  var parentRow = $(elem).parent().parent().parent()[0].children;
+
+  for(var q = 0; q < parentRow.length-1; q++) {
+    console.log(parentRow[q].innerHTML);
+  }
+  // console.log($(elem).parent().parent().parent()[0].children[0].innerHTML);
 }
 
 function t_delete(id) {

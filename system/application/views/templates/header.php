@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="10"/>
+
     <title>Pandalivery - <?php echo $title ?></title>
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url().'assets/imgs/head-logo.png' ?>">
 

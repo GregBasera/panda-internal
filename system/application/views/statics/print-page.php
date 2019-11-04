@@ -31,7 +31,7 @@
       <h4 class="<?php echo (!isset($partner_name)) ? 'mt-4' : 'mt-2' ?>"><?php echo $kind ?></h4>
       <h6 class="mb-4"><?php echo $titleSupport ?></h6>
     </div>
-    <div class="container-fluid my-5">
+    <div class="container my-5">
       <div class="row">
         <div class="col-6">
           <?php if ($prev != ''): ?>
@@ -42,10 +42,10 @@
           <?php endif; ?>
           <?php if ($partnerTotals != ''): ?>
             <h5>Contract Percentage: <b><?php echo number_format($partnerTotals[0]['contract'], 3, '.', '') ?></b></h5>
-            <h5><?php echo $partner_name."'s Service Fee for: " ?> (<?php echo $curr['date'] ?>): ₱ <b><?php echo number_format($partnerTotals[0]['service_fee'], 2, '.', ',') ?></b></h5>
+            <h5><?php echo $partner_name."'s Service Fee for " ?> (<?php echo $curr['date'] ?>): ₱ <b><?php echo number_format($partnerTotals[0]['service_fee'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
           <?php if ($blankTotals != ''): ?>
-            <h5>Number of Deliveries: (<?php echo $curr['date'] ?>): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
+            <h5>Number of Deliveries (<?php echo $curr['date'] ?>): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
           <?php endif; ?>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <?php endforeach; ?>
       </tbody>
     </table>
-    <div class="container">
+    <div class="container mt-5 pt-5">
       <div class="row">
         <div class="col-6">
 
