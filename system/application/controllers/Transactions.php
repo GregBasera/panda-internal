@@ -19,6 +19,7 @@ class Transactions extends CI_Controller {
 
 		$data['name'] = $_SESSION['user'];
 		$allT = ($searRes) ? $searRes : $this->transactions_model->getAll();
+		$data['hasRes'] = (is_array($searRes) && sizeof($searRes) == 0) ? false : true; 
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
 		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
@@ -169,7 +170,7 @@ class Transactions extends CI_Controller {
 		}
 
 		$searchResult = $this->transactions_model->search($like);
-		
+
 		$this->view(1, $searchResult);
 	}
 }

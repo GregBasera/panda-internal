@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col-11">
+    <div class="col">
       <div class="container-fluid pr-0 pr-sm-3">
         <div class="row pb-2">
           <div class="col">
@@ -45,6 +45,14 @@
           </div>
         </div>
       </div>
+
+      <div class="alert alert-danger alert-dismissible fade <?php echo ($hasRes) ? 'd-none' : 'show' ?>" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Sorry</strong> your query didn't return any relevant results.
+      </div>
+
       <table class="table table-bordered table-sm table-hover">
         <thead>
           <tr class="text-center">
