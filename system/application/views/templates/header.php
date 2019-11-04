@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Pandalivery - <?php echo $title ?></title>
+    <title><?php echo $title ?></title>
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url().'assets/imgs/head-logo.png' ?>">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">

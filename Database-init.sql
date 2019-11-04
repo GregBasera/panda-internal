@@ -29,13 +29,13 @@ CREATE TABLE TRANSACTIONS (
   customer_contact            varchar(15)      not null,
   delivery_address            text             not null,
   landmark_directions         text,
-  partner_ID                  varchar(15)      not null,
+  partner_ID                  varchar(15),
   subtotal                    float            not null,
   delivery_charge             float            not null,
   total_transaction_price     float            not null,
 
   constraint primary key (transaction_ID),
-  constraint foreign key (partner_ID) REFERENCES PARTNERS (partner_ID) ON DELETE CASCADE
+  constraint foreign key (partner_ID) REFERENCES PARTNERS (partner_ID) ON DELETE SET null
 );
 
 CREATE TABLE ORDERS (

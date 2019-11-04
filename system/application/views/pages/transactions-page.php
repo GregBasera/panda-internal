@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col">
+    <div class="col-11">
       <div class="container-fluid pr-0 pr-sm-3">
         <div class="row pb-2">
           <div class="col">
@@ -28,9 +28,9 @@
             </div>
           </div>
           <div class="col-6 d-none d-sm-block">
-            <!-- <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
+            <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
               <input class="form-control" type="search" value="" name="keyword" placeholder="Search">
-            </form> -->
+            </form>
           </div>
           <div class="col d-flex align-items-center justify-content-end">
             <ul class="pagination pagination-sm m-0">

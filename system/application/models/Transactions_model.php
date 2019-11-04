@@ -73,4 +73,19 @@ class Transactions_model extends CI_Model{
   public function deleteTransaction($id) {
     $this->db->delete('TRANSACTIONS', array('transaction_ID' => $id));
   }
+
+  public function search($like) {
+    $query = $this->db->query("
+      select t.transaction_ID, t.date_encoded, t.encoded_by, t.order_number, t.dispatched_by, t.transaction_date,
+      t.customer_fname, t.customer_lname, t.customer_contact, t.delivery_address, t.landmark_directions,
+      p.partner_name, t.subtotal, t.delivery_charge, t.total_transaction_price
+      from TRANSACTIONS t, PARTNERS p
+      where t.partner_ID = p.partner_ID
+      and concat(t.date_encoded, t.encoded_by, t.order_number, t.dispatched_by, t.transaction_date, t.customer_fname,
+      t.customer_lname, t.customer_contact, t.delivery_address, t.landmark_directions, p.partner_name, t.subtotal,
+      t.delivery_charge, t.total_transaction_price) like '$like';
+    ");
+    $result = $query->result_array();
+    return $result;
+  }
 }

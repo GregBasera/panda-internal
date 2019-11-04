@@ -13,12 +13,12 @@ class Transactions extends CI_Controller {
 		}
   }
 
-	public function view($p = 1) {
-		$page['title'] = 'Transactions';
+	public function view($p = 1, $searRes = null) {
+		$page['title'] = ($searRes) ? 'Search Results' : 'Transactions';
     $page['user'] = $_SESSION['user'];
 
 		$data['name'] = $_SESSION['user'];
-		$allT = $this->transactions_model->getAll();
+		$allT = ($searRes) ? $searRes : $this->transactions_model->getAll();
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
 		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
@@ -161,10 +161,15 @@ class Transactions extends CI_Controller {
 	}
 
 	public function search() {
-		$s_keywords = $this->input->post('keyword');
+		$s_keywords = explode(' ', $this->input->post('keyword'));
+		$like = '%';
 
-		$s = explode($s_keywords, ' ');
-		print_r($s);
-		echo " This search module is not yet working, still working on it... -Developer";
+		for($q = 0; $q < sizeof($s_keywords); $q++){
+			$like = $like.$s_keywords[$q].'%';
+		}
+
+		$searchResult = $this->transactions_model->search($like);
+		
+		$this->view(1, $searchResult);
 	}
 }

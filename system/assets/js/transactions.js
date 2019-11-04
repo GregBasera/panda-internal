@@ -88,7 +88,7 @@ function addTransaction() {
         $('#spinner').show();
       },
       success: function(result) {
-        $(location).attr('href', window.origin + '/transactions');
+        $(location).attr('href', window.origin + '/transactions/view');
       }
     });
   }
@@ -161,7 +161,7 @@ function t_delete(id) {
       $('#del_spinner').show();
     },
     success: function(result) {
-      $(location).attr('href', window.origin + '/transactions');
+      $(location).attr('href', window.origin + '/transactions/view');
     }
   });
 }
