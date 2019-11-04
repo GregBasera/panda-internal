@@ -104,9 +104,9 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <!-- <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
+                  <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>', this);">
                     <i class="fa fa-pen"></i> Update/Edit
-                  </button> -->
+                  </button>
                   <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target=".delete-modal" onclick="deleteModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-trash"></i> Delete
                   </button>
@@ -131,7 +131,7 @@
         </button>
       </div>
       <div class="modal-body">
-        update pa ba?
+
       </div>
       <div class="modal-footer">
         <div class="container-fluid">
