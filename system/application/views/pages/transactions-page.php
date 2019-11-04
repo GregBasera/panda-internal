@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="col-6 d-none d-sm-block">
-            <form class="" target="_blank" action="<?php echo base_url().'transactions/search' ?>" method="post">
+            <form class="" target="" action="<?php echo base_url().'transactions/search' ?>" method="post">
               <input class="form-control" type="search" value="" name="keyword" placeholder="Search">
             </form>
           </div>
