@@ -33,6 +33,7 @@ CREATE TABLE TRANSACTIONS (
   subtotal                    float            not null,
   delivery_charge             float            not null,
   total_transaction_price     float            not null,
+  isDelivered                 boolean          not null,
 
   constraint primary key (transaction_ID, order_number),
   constraint foreign key (partner_ID) REFERENCES PARTNERS (partner_ID) ON DELETE SET null
@@ -51,8 +52,8 @@ CREATE TABLE ORDERS (
 INSERT INTO PARTNERS (partner_ID, partner_name, partner_address, partner_contact, partner_email, owner_name, owner_contact, owner_email, contract_percentage, contract_execution) VALUES
 ("pt5da6e9f413834", "resturanSIA", "sa bulsa ko", "09123456789", "resturanSIA@gmail.com", "Justin Sia", "09123456789", "owner@gmail.com", 0.30, "2019-10-16");
 
-INSERT INTO TRANSACTIONS (transaction_ID, encoded_by, order_number, dispatched_by, transaction_date, customer_fname, customer_lname, customer_contact, delivery_address, landmark_directions, partner_ID, subtotal, delivery_charge, total_transaction_price) VALUES
-("5da6e5901e167", "Gweg", 1, "Gweg", "2019-10-16", "Jude", "Buelva", "09123456789", "Somewhere over the rainbow", "Look for the leprechaun he will take you there", "pt5da6e9f413834", 600, 55, 655);
+INSERT INTO TRANSACTIONS (transaction_ID, encoded_by, order_number, dispatched_by, transaction_date, customer_fname, customer_lname, customer_contact, delivery_address, landmark_directions, partner_ID, subtotal, delivery_charge, total_transaction_price, isDelivered) VALUES
+("5da6e5901e167", "Gweg", 1, "Gweg", "2019-10-16", "Jude", "Buelva", "09123456789", "Somewhere over the rainbow", "Look for the leprechaun he will take you there", "pt5da6e9f413834", 600, 55, 655, true);
 
 INSERT INTO ORDERS (transaction_ID, item_name, quantity, price) VALUES
 ("5da6e5901e167", "hotsilog", 2, 200),

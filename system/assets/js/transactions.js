@@ -25,8 +25,9 @@ function addTransaction() {
     't_grandT' : document.transaction.t_grandT.value,
     't_ordernum' : document.transaction.t_ordernum.value,
     't_dispatched_by' : document.transaction.t_dispatched_by.value,
-    't_encoded_by' : document.transaction.t_encoded_by.value
-  };
+    't_encoded_by' : document.transaction.t_encoded_by.value,
+    't_isDelivered' : (document.transaction.isDelivered.checked == true) ? 'true' : 'false'
+  };console.log(transaction);
 
   var order = new Array(document.getElementsByName("i_price").length);
   if(order.length == 1){ // one item entry requires diff proccess due to html restictions

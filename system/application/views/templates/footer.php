@@ -7,7 +7,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="text/javascript" src="<?php echo base_url().'assets/js/general.js' ?>"></script>
 
-  <?php if ($title == 'Transactions'): ?>
+  <?php if ($title == 'Transactions' || $title == 'Search Results'): ?>
     <script type="text/javascript" src="<?php echo base_url().'assets/js/transactions.js' ?>"></script>
   <?php elseif ($title == 'Partners'): ?>
     <script type="text/javascript" src="<?php echo base_url().'assets/js/partners.js' ?>"></script>

@@ -4,14 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transactions extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		try {
-			if($_SESSION['role'] != 'staff' || !isset($_SESSION['role'])) {
-				redirect('userlog/view', 'refresh');
-			}
-		} catch (Exception $e) {
+		if($_SESSION['role'] != 'staff' && isset($_SESSION['role'])) {
 			redirect('userlog/view', 'refresh');
 		}
-  }
+}
 
 	public function view($p = 1, $searRes = null) {
 		$page['title'] = ($searRes) ? 'Search Results' : 'Transactions';
@@ -19,7 +15,7 @@ class Transactions extends CI_Controller {
 
 		$data['name'] = $_SESSION['user'];
 		$allT = ($searRes) ? $searRes : $this->transactions_model->getAll();
-		$data['hasRes'] = (is_array($searRes) && sizeof($searRes) == 0) ? false : true; 
+		$data['hasRes'] = (is_array($searRes) && sizeof($searRes) == 0) ? false : true;
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
 		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
@@ -49,7 +45,8 @@ class Transactions extends CI_Controller {
 		  'partner_ID' => $t['t_partner'],
 		  'subtotal' => $t['t_subtotal'],
 		  'delivery_charge' => $t['t_dcharge'],
-		  'total_transaction_price' => $t['t_grandT']
+			'total_transaction_price' => $t['t_grandT'],
+		  'isDelivered' => ($t['t_isDelivered'] == 'true') ? true : false
 		);
 
 		$this->transactions_model->addTransaction($transactionData);

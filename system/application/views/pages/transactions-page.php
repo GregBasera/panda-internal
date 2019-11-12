@@ -119,6 +119,16 @@
                     <i class="fa fa-trash"></i> Delete
                   </button>
                 </div>
+                <br>
+                <?php if ($transaction['isDelivered'] == true): ?>
+                  <span class="badge badge-success" data-toggle="tooltip" data-placement="left" title="Delivered">
+                    <i class="fa fa-check"></i>
+                  </span>
+                <?php else: ?>
+                  <span class="badge badge-danger" data-toggle="tooltip" data-placement="left" title="Canceled">
+                    <i class="fa fa-times"></i>
+                  </span>
+                <?php endif; ?>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -289,6 +299,10 @@
           <div class="container-fluid">
             <div class="spinner-border spinner-border-sm" id="spinner"></div>
             <div class="alert alert-danger py-1 my-auto" id="transactionFormAlert"></div>
+          </div>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" name="isDelivered" id="isDelivered">
+            <label class="custom-control-label" for="isDelivered">Delivered</label>
           </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" onclick="addTransaction();">Save</button>
