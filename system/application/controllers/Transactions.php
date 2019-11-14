@@ -4,10 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transactions extends CI_Controller {
 	public function __construct() {
     parent::__construct();
-		if($_SESSION['role'] != 'staff' && isset($_SESSION['role'])) {
+		if(isset($_SESSION['role'])) {
+			if ($_SESSION['role'] != 'staff') {
+				redirect('userlog/view', 'refresh');
+			}
+		} else {
 			redirect('userlog/view', 'refresh');
 		}
-}
+	}
 
 	public function view($p = 1, $searRes = null) {
 		$page['title'] = ($searRes) ? 'Search Results' : 'Transactions';

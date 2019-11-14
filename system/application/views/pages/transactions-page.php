@@ -134,6 +134,8 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+
+      <small class="text-muted"><i><?php echo (sizeof($transactions)) ? sizeof($transactions) : "no" ?> transaction(s) on record</i></small>
     </div>
   </div>
 </div>
@@ -301,8 +303,8 @@
             <div class="alert alert-danger py-1 my-auto" id="transactionFormAlert"></div>
           </div>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" name="isDelivered" id="isDelivered">
-            <label class="custom-control-label" for="isDelivered">Delivered</label>
+            <input type="checkbox" class="custom-control-input" name="isDelivered" id="isDelivered" onclick="isDeliv();">
+            <label class="custom-control-label" for="isDelivered" id="isDeliv">Cancelled</label>
           </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" onclick="addTransaction();">Save</button>
@@ -394,7 +396,7 @@
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.transaction_date" checked> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.transaction_date"> Transaction Date</label>
               <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.order_number" checked> Order Number</label>
               <br>
               <label class="d-block"><input type="radio" name="order" value="asc" checked> Ascending</label>

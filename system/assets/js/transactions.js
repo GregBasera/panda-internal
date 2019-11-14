@@ -8,6 +8,14 @@ $('#yearlyMod').hide();
 $('#del_spinner').hide();
 $('#edit_spinner').hide();
 
+function isDeliv() {
+  if (document.transaction.isDelivered.checked == true){
+    $("#isDeliv").html("Delivered");
+  } else {
+    $("#isDeliv").html("Cancelled");
+  }
+}
+
 function addTransaction() {
   $('#transactionFormAlert').hide();
   var isValid = true;

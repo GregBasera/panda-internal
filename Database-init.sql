@@ -2,6 +2,11 @@ CREATE DATABASE IF NOT EXISTS pandalivery;
 
 use pandalivery;
 
+CREATE TABLE ACCESS (
+  role            varchar(50)      not null,
+  pass            varchar(50)      not null
+);
+
 CREATE TABLE PARTNERS (
   partner_ID              varchar(15)      not null,
   partner_name            varchar(80)      not null,
@@ -19,7 +24,7 @@ CREATE TABLE PARTNERS (
 
 CREATE TABLE TRANSACTIONS (
   transaction_ID              varchar(15)      not null,
-  date_encoded                datetime         DEFAULT CURRENT_TIMESTAMP,
+  date_encoded                datetime         DEFAULT        CURRENT_TIMESTAMP,
   encoded_by                  varchar(20)      not null,
   order_number                int              not null,
   dispatched_by               varchar(20)      not null,
@@ -48,6 +53,10 @@ CREATE TABLE ORDERS (
   constraint foreign key (transaction_ID) REFERENCES TRANSACTIONS (transaction_ID) ON DELETE CASCADE
 );
 
+
+INSERT INTO ACCESS (role, pass) VALUES
+("Staff", "e8e3f0a15f04acca5ab2b84f1bf3eac7b6f09f86"),
+("Manager", "");
 
 INSERT INTO PARTNERS (partner_ID, partner_name, partner_address, partner_contact, partner_email, owner_name, owner_contact, owner_email, contract_percentage, contract_execution) VALUES
 ("pt5da6e9f413834", "resturanSIA", "sa bulsa ko", "09123456789", "resturanSIA@gmail.com", "Justin Sia", "09123456789", "owner@gmail.com", 0.30, "2019-10-16");
