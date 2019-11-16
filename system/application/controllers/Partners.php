@@ -5,7 +5,7 @@ class Partners extends CI_Controller {
 	public function __construct() {
     parent::__construct();
 		if(isset($_SESSION['role'])) {
-			if ($_SESSION['role'] != 'staff') {
+			if ($_SESSION['role'] != 'Staff') {
 				redirect('userlog/view', 'refresh');
 			}
 		} else {
@@ -16,6 +16,7 @@ class Partners extends CI_Controller {
 	public function index() {
     $page['title'] = 'Partners';
 		$page['user'] = $_SESSION['user'];
+		$page['role'] = $_SESSION['role'];
 
 		$data['partners'] = $this->partners_model->getAllPartners();
 

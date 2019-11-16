@@ -1,10 +1,21 @@
 <?php
 class Userlog_model extends CI_Model{
   public function in($name, $token) {
-    if($token == 'e8e3f0a15f04acca5ab2b84f1bf3eac7b6f09f86') {
-      return 'staff';
-    } else {
-      return 'unauthorized';
-    }
+    $query = $this->db->query("
+      select role
+      from ACCESS
+      where pass = '$token';
+    ");
+    $result = $query->result_array();
+    return $result;
+  }
+
+  public function changePass($role, $prev, $next) {
+    $this->db->set('pass', $next);
+    $this->db->where('role', $role);
+    $this->db->where('pass', $prev);
+    $this->db->update('ACCESS');
+
+    return $this->db->affected_rows();
   }
 }

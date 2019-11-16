@@ -135,7 +135,7 @@
         </tbody>
       </table>
 
-      <small class="text-muted"><i><?php echo (sizeof($transactions)) ? sizeof($transactions) : "no" ?> transaction(s) on record</i></small>
+      <small class="text-muted"><i><?php echo $onRecord ?> transaction(s) on record</i></small>
     </div>
   </div>
 </div>
@@ -359,6 +359,14 @@
               <label class="d-block"><input type="radio" name="kind" value="daily" onclick="kindToMod();" required> Daily Report</label>
               <label class="d-block"><input type="radio" name="kind" value="monthly" onclick="kindToMod();"> Monthly Report</label>
               <label class="d-block"><input type="radio" name="kind" value="yearly" onclick="kindToMod();"> Yearly Report</label>
+
+              <h4 class="px-3 mt-4">Delivered?</h4>
+              <hr class="my-1">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" name="isDelivered" id="delivered" onclick="isDeliv();">
+                <label class="custom-control-label" for="delivered" id="deliv">Cancelled</label>
+              </div>
+              <label class="d-block"><input type="checkbox" name="delivered" value="all" onclick="document.getElementById('delivered').disabled = (this.checked) ? true : false;"> All</label>
             </div>
             <div class="col-4">
               <h4 class="px-3">Modifiers</h4>
@@ -396,7 +404,7 @@
             <div class="col-4">
               <h4 class="px-3">Order by</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.transaction_date"> Transaction Date</label>
+              <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.transaction_date" checked> Transaction Date</label>
               <label class="d-block"><input type="checkbox" name="orderDefined[]" value="t.order_number" checked> Order Number</label>
               <br>
               <label class="d-block"><input type="radio" name="order" value="asc" checked> Ascending</label>

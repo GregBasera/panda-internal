@@ -5,7 +5,7 @@ class Transactions extends CI_Controller {
 	public function __construct() {
     parent::__construct();
 		if(isset($_SESSION['role'])) {
-			if ($_SESSION['role'] != 'staff') {
+			if ($_SESSION['role'] != 'Staff') {
 				redirect('userlog/view', 'refresh');
 			}
 		} else {
@@ -15,7 +15,8 @@ class Transactions extends CI_Controller {
 
 	public function view($p = 1, $searRes = null) {
 		$page['title'] = ($searRes) ? 'Search Results' : 'Transactions';
-    $page['user'] = $_SESSION['user'];
+		$page['user'] = $_SESSION['user'];
+    $page['role'] = $_SESSION['role'];
 
 		$data['name'] = $_SESSION['user'];
 		$allT = ($searRes) ? $searRes : $this->transactions_model->getAll();
@@ -23,6 +24,7 @@ class Transactions extends CI_Controller {
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
 		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
+		$data['onRecord'] = sizeof($allT);
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();
 
@@ -126,6 +128,14 @@ class Transactions extends CI_Controller {
 				'possessive' =>  "Year's",
 				'date' => $mods
 			);
+		}
+
+		if($this->input->post('delivered') != 'all') {
+			if ($this->input->post('isDelivered') == 'on') {
+				$where = $where.'and t.isDelivered = true';
+			} else {
+				$where = $where.'and t.isDelivered = false';
+			}
 		}
 
 		$order['def'] = $this->input->post('orderDefined');

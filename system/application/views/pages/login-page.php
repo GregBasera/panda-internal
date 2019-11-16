@@ -10,7 +10,7 @@
             <small>Name</small>
             <input class="form-control form-control-lg" type="text" name="name" value="" required>
             <small>Token</small>
-            <input class="form-control form-control-lg" type="text" name="token" value="" required>
+            <input class="form-control form-control-lg" type="password" name="token" value="" required>
             <input class="btn btn-success btn-block btn-sm mt-2" type="submit" name="" value="Sign-in">
             <?php if ($error == 'e'): ?>
               <div class="alert alert-danger m-0 mt-2" id="unauth" role="alert">

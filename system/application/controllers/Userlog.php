@@ -18,9 +18,9 @@ class Userlog extends CI_Controller {
 
     $verd = $this->userlog_model->in($name, $token);
 
-    if($verd == 'staff') {
+    if(sizeof($verd) != 0) {
       $_SESSION['user'] = $name;
-      $_SESSION['role'] = $verd;
+      $_SESSION['role'] = $verd[0]['role'];
 
       redirect('transactions/view');
     } else {
@@ -33,5 +33,17 @@ class Userlog extends CI_Controller {
     $_SESSION['role'] = '';
 
     $this->view();
+  }
+
+  public function updatePass() {
+    $role = $this->input->post('role');
+    $prev = sha1($this->input->post('prev'));
+    $next = sha1($this->input->post('next'));
+
+    if($this->userlog_model->changePass($role, $prev, $next) > 0) {
+      $this->signout();
+    } else {
+      redirect('transactions/view');
+    }
   }
 }

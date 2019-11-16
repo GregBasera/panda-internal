@@ -38,7 +38,39 @@
           <b><?php echo $user ?></b>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
+          <button class="dropdown-item" data-toggle="modal" data-target=".edit-pass">
+            Change Password
+          </button>
+          <hr class="m-2">
           <a href="<?php echo base_url().'userlog/signout' ?>" class="dropdown-item">Sign-out</a>
+        </div>
+      </div>
+
+      <div class="modal fade edit-pass" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="" target="" action="<?php echo base_url().'userlog/updatePass' ?>" method="post">
+              <div class="modal-body">
+                <input class="form-control my-1" type="text" name="role" value="<?php echo $role ?>" readonly>
+                <input class="form-control my-1" type="password" name="prev" value="" placeholder="Previous Password">
+                <input class="form-control my-1" type="password" name="next" value="" placeholder="New Password">
+                <div class="alert alert-warning my-1" role="alert">
+                  If successful, you will be redirected to the login-page.
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <input class="btn btn-primary" type="submit" name="" value="Save changes">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </nav>

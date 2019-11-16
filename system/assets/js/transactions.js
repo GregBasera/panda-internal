@@ -9,10 +9,10 @@ $('#del_spinner').hide();
 $('#edit_spinner').hide();
 
 function isDeliv() {
-  if (document.transaction.isDelivered.checked == true){
-    $("#isDeliv").html("Delivered");
+  if (document.transaction.isDelivered.checked == true || document.Print.isDelivered.checked == true){
+    $("#isDeliv,#deliv").html("Delivered");
   } else {
-    $("#isDeliv").html("Cancelled");
+    $("#isDeliv,#deliv").html("Cancelled");
   }
 }
 
