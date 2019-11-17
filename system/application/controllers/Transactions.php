@@ -184,4 +184,25 @@ class Transactions extends CI_Controller {
 
 		$this->view(1, $searchResult);
 	}
+
+	public function getForEdit() {
+		echo json_encode($this->transactions_model->forEdit($this->input->post('id')));
+	}
+
+	public function t_edit() {
+		$data = array(
+			'transaction_ID' => $this->input->post('id'),
+			'transaction_date' => $this->input->post('e_t_date').' '.$this->input->post('e_t_time'),
+			'customer_fname' => $this->input->post('e_c_fname'),
+			'customer_lname' => $this->input->post('e_c_lname'),
+			'customer_contact' => $this->input->post('e_c_contact'),
+			'delivery_address' => $this->input->post('e_c_address'),
+			'landmark_directions' => $this->input->post('e_c_directions'),
+			'partner_ID' => $this->input->post('e_t_partner'),
+			'order_number' => $this->input->post('e_t_ordernum'),
+			'dispatched_by' => $this->input->post('e_t_dispatched_by'),
+			'isDelivered' => ($this->input->post('e_isDelivered') == 'true') ? true : false
+		);
+		$this->transactions_model->edit($data);
+	}
 }

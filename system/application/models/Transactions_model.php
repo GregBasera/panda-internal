@@ -88,4 +88,27 @@ class Transactions_model extends CI_Model{
     $result = $query->result_array();
     return $result;
   }
+
+  public function forEdit($id) {
+    $query = $this->db->query("
+      select * from TRANSACTIONS where transaction_ID = '$id';
+    ");
+    $result = $query->result_array();
+    return $result;
+  }
+
+  public function edit($data) {
+    $this->db->set('transaction_date', $data['transaction_date']);
+    $this->db->set('customer_fname', $data['customer_fname']);
+    $this->db->set('customer_lname', $data['customer_lname']);
+    $this->db->set('customer_contact', $data['customer_contact']);
+    $this->db->set('delivery_address', $data['delivery_address']);
+    $this->db->set('landmark_directions', $data['landmark_directions']);
+    $this->db->set('partner_ID', $data['partner_ID']);
+    $this->db->set('order_number', $data['order_number']);
+    $this->db->set('dispatched_by', $data['dispatched_by']);
+    $this->db->set('isDelivered', $data['isDelivered']);
+    $this->db->where('transaction_ID', $data['transaction_ID']);
+    $this->db->update('TRANSACTIONS');
+  }
 }

@@ -19,6 +19,7 @@ class Partners extends CI_Controller {
 		$page['role'] = $_SESSION['role'];
 
 		$data['partners'] = $this->partners_model->getAllPartners();
+		$data['onRecord'] = sizeof($data['partners']);
 
     $this->load->view('templates/header', $page);
     $this->load->view('pages/partners-page', $data);

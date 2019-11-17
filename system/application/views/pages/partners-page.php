@@ -80,6 +80,8 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+
+      <small class="text-muted"><i><?php echo $onRecord ?> partner(s) on record</i></small>
     </div>
   </div>
 </div>

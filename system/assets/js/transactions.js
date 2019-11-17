@@ -9,10 +9,10 @@ $('#del_spinner').hide();
 $('#edit_spinner').hide();
 
 function isDeliv() {
-  if (document.transaction.isDelivered.checked == true || document.Print.isDelivered.checked == true){
-    $("#isDeliv,#deliv").html("Delivered");
+  if (document.transaction.isDelivered.checked == true || document.Print.isDelivered.checked == true || document.getElementById('e_isDelivered').checked == true){
+    $("#isDeliv,#deliv,#e_isDeliv").html("Delivered");
   } else {
-    $("#isDeliv,#deliv").html("Cancelled");
+    $("#isDeliv,#deliv,#e_isDeliv").html("Cancelled");
   }
 }
 
@@ -155,14 +155,41 @@ function deleteModalTriggd(id) {
   $('#t_delete').attr('onclick', 't_delete("'+id+'");')
 }
 
-function editModalTriggd(id, elem) {
-  $('#t_edit').attr('onclick', 't_edit("'+id+'");');
-  var parentRow = $(elem).parent().parent().parent()[0].children;
+function editModalTriggd(id) {
+  $('#edit_spinner').show();
+  var data = {'id' : id}
+  $.ajax({
+    type: "POST",
+    url: window.origin + "/transactions/getForEdit",
+    data: data,
+    // beforeSend: function() {
+    //   $('#spinner').show();
+    // },
+    success: function(result) {
+      // $(location).attr('href', window.origin + '/transactions/view');
+      var fromServer = JSON.parse(result);
+      var datetime = fromServer[0]['transaction_date'].split(' ');
 
-  for(var q = 0; q < parentRow.length-1; q++) {
-    console.log(parentRow[q].innerHTML);
-  }
-  // console.log($(elem).parent().parent().parent()[0].children[0].innerHTML);
+      $('#e_t_date').val(datetime[0]);
+      $('#e_t_time').val(datetime[1]);
+      $('#e_c_fname').val(fromServer[0]['customer_fname']);
+      $('#e_c_lname').val(fromServer[0]['customer_lname']);
+      $('#e_c_contact').val(fromServer[0]['customer_contact']);
+      $('#e_c_address').val(fromServer[0]['delivery_address']);
+      $('#e_c_directions').val(fromServer[0]['landmark_directions']);
+      $('#e_t_partner').val(fromServer[0]['partner_ID']);
+      $('#e_t_ordernum').val(fromServer[0]['order_number']);
+      $('#e_t_dispatched_by').val(fromServer[0]['dispatched_by']);
+      if(fromServer[0]['isDelivered'] == '1') {
+        $('#e_isDelivered').attr('checked', 'true');
+        isDeliv();
+      }
+
+      $('#edit_spinner').hide();
+    }
+  });
+
+  $('#t_edit').attr('onclick', "t_edit('"+id+"')");
 }
 
 function t_delete(id) {
@@ -182,7 +209,33 @@ function t_delete(id) {
 }
 
 function t_edit(id) {
-  console.log(id);
+  var data = {
+    'id' : id,
+    'e_t_date' : document.getElementById('e_t_date').value,
+    'e_t_time' : document.getElementById('e_t_time').value,
+    'e_c_fname' : document.getElementById('e_c_fname').value,
+    'e_c_lname' : document.getElementById('e_c_lname').value,
+    'e_c_contact' : document.getElementById('e_c_contact').value,
+    'e_c_address' : document.getElementById('e_c_address').value,
+    'e_c_directions' : document.getElementById('e_c_directions').value,
+    'e_t_partner' : document.getElementById('e_t_partner').value,
+    'e_t_ordernum' : document.getElementById('e_t_ordernum').value,
+    'e_t_dispatched_by' : document.getElementById('e_t_dispatched_by').value,
+    'e_isDelivered' : (document.getElementById('e_isDelivered').checked == true) ? true : false
+  };
+
+  // console.log((document.getElementById('e_isDelivered').checked == true) ? "true" : "false");
+  $.ajax({
+    type: "POST",
+    url: window.origin + "/transactions/t_edit",
+    data: data,
+    beforeSend: function() {
+      $('#edit_spinner').show();
+    },
+    success: function(result) {
+      $(location).attr('href', window.origin + '/transactions/view');
+    }
+  });
 }
 
 console.log("transacions.js loaded");

@@ -108,11 +108,11 @@
               <td>₱ <?php echo $transaction['delivery_charge'] ?></td>
               <td>₱ <?php echo $transaction['total_transaction_price'] ?></td>
               <td>
-                <span class="badge badge-info dropdown-toggle pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="badge badge-secondary dropdown-toggle pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>', this);">
+                  <button class="dropdown-item" type="button" name="button" data-toggle="modal" data-target=".edit-modal" onclick="editModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
                     <i class="fa fa-pen"></i> Update/Edit
                   </button>
                   <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target=".delete-modal" onclick="deleteModalTriggd('<?php echo $transaction['transaction_ID'] ?>');">
@@ -151,11 +151,72 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="row">
+          <div class="col-3 pr-1">
+            Transaction Date
+            <input class="form-control" type="date" id="e_t_date" value="">
+          </div>
+          <div class="col-3 pl-1">
+            Transaction Time
+            <input class="form-control" type="time" id="e_t_time" value="">
+          </div>
 
+          <div class="col pr-1">
+            Firstname
+            <input class="form-control" type="text" id="e_c_fname" value="">
+          </div>
+          <div class="col pl-1">
+            Lastname
+            <input class="form-control" type="text" id="e_c_lname" value="">
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4">
+            Contact Number
+            <input class="form-control" type="text" id="e_c_contact" value="">
+          </div>
+          <div class="col">
+            Delivery Address
+            <input class="form-control" type="text" id="e_c_address" value="">
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            Nearby Landmarks/Specific Directions
+            <input class="form-control" type="text" id="e_c_directions" value="--">
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4">
+            Partner/Establishent
+            <select class="custom-select" id="e_t_partner">
+              <option value="">Click'n Choose</option>
+              <?php foreach ($partners as $partner): ?>
+                <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="col-2 pr-1">
+            Encoded By
+            <input class="form-control text-center" type="text" id="e_t_encoded_by" value="<?php echo $name ?>" readonly>
+          </div>
+          <div class="col-3 px-1">
+            Order Number
+            <input class="form-control text-center" type="number" id="e_t_ordernum" min="1" value="">
+          </div>
+          <div class="col-3 pl-1">
+            Dispatched by
+            <input class="form-control text-center" type="text" id="e_t_dispatched_by" value="">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <div class="container-fluid">
           <div class="spinner-border spinner-border-sm" id="edit_spinner"></div>
+        </div>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" name="isDelivered" id="e_isDelivered" onclick="isDeliv();">
+          <label class="custom-control-label" for="e_isDelivered" id="e_isDeliv">Cancelled</label>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="t_edit">Update</button>
