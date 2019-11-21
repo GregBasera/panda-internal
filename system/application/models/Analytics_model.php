@@ -27,7 +27,7 @@ class Analytics_model extends CI_Model{
       (select count(transaction_ID) from TRANSACTIONS where partner_ID = t.partner_ID) as trans
       from TRANSACTIONS t, PARTNERS p
       where t.partner_ID = p.partner_ID
-      order by trans
+      order by trans desc
       limit 20;
     ");
     $result = $query->result_array();
