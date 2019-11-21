@@ -11,6 +11,8 @@
     <script type="text/javascript" src="<?php echo base_url().'assets/js/transactions.js' ?>"></script>
   <?php elseif ($title == 'Partners'): ?>
     <script type="text/javascript" src="<?php echo base_url().'assets/js/partners.js' ?>"></script>
+  <?php elseif ($title == 'Analytics'): ?>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js/panalytics.js' ?>"></script>
   <?php endif; ?>
 
   <script type="text/javascript">

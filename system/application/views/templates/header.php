@@ -13,6 +13,8 @@
       <!-- <link rel="stylesheet" href="<?php echo base_url().'assets/css/transactions.css' ?>"> -->
     <?php elseif ($title == 'Partners'): ?>
       <!-- <link rel="stylesheet" href="<?php echo base_url().'assets/css/partners.css' ?>"> -->
+    <?php elseif ($title == 'Analytics'): ?>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
     <?php endif; ?>
   </head>
   <body>
@@ -30,6 +32,9 @@
         </li>
         <li class="nav-item <?php echo ($title == 'Partners') ? 'active' : '' ?>">
           <a class="nav-link" href="<?php echo base_url().'partners' ?>">Partners</a>
+        </li>
+        <li class="nav-item <?php echo ($title == 'Analytics') ? 'active' : '' ?>">
+          <a class="nav-link" href="<?php echo base_url().'analytics' ?>">Analytics</a>
         </li>
       </ul>
 

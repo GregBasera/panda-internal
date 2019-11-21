@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row py-2">
-    <div class="col-auto pr-0 d-none d-sm-block">
+    <div class="col-auto pr-0 d-none d-md-block">
       <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-primary mb-2" data-toggle="modal" data-target=".add-transac-modal">
           <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Transaction"></i>
