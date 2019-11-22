@@ -33,4 +33,13 @@ class Analytics_model extends CI_Model{
     $result = $query->result_array();
     return $result;
   }
+
+  public function getForPerBarang() {
+    $query = $this->db->query("
+      select concat(delivery_address, ' ', landmark_directions) as postal
+      from TRANSACTIONS;
+    ");
+    $result = $query->result_array();
+    return $result;
+  }
 }

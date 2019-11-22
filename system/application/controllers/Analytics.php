@@ -30,4 +30,8 @@ class Analytics extends CI_Controller {
   public function varsForTop20() {
     echo json_encode($this->analytics_model->getForTop20());
   }
+
+  public function varsForPerBarang() {
+    echo json_encode($this->analytics_model->getForPerBarang());
+  }
 }
