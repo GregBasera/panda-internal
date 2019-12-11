@@ -145,9 +145,11 @@ function kindToMod() {
 function reportSummary() {
   if(document.Print.partner.value == '') {
     document.Print.sumContract.checked = false;
-    document.Print.sumContract.disabled = true;
+    // document.Print.sumContract.disabled = true;
+    $(document.Print.sumContract).attr("disabled", true);
   } else {
-    document.Print.sumContract.disabled = false;
+    // document.Print.sumContract.disabled = false;
+    $(document.Print.sumContract).removeAttr("disabled");
   }
 }
 
