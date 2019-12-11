@@ -25,7 +25,8 @@ class Transactions_model extends CI_Model{
   public function getPartnerIDs() {
     $query = $this->db->query("
       select partner_ID, partner_name
-      from PARTNERS;
+      from PARTNERS
+      order by partner_name;
     ");
     $result = $query->result_array();
     return $result;
@@ -48,19 +49,19 @@ class Transactions_model extends CI_Model{
   public function getPrev($date, $kind) {
     if ($kind == 'daily') {
       $query = $this->db->query("
-        select 'Last Day`s Sales' as 'title', date_format(date_sub('$date', interval 1 day), '%M %d, %Y') as date, sum(total_transaction_price) as previous
+        select 'Last Day`s Sales' as 'title', date_format(date_sub('$date', interval 1 day), '%M %d, %Y') as date, sum(subtotal) as previous, sum(delivery_charge) as dCharge, sum(total_transaction_price) as prevTotal
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 day), '%'));
       ");
     } elseif ($kind == 'monthly') {
       $query = $this->db->query("
-        select 'Last Month`s Sales' as 'title', date_format(date_sub('$date', interval 1 month), '%M %Y') as date, sum(total_transaction_price) as previous
+        select 'Last Month`s Sales' as 'title', date_format(date_sub('$date', interval 1 month), '%M %Y') as date, sum(subtotal) as previous, sum(delivery_charge) as dCharge, sum(total_transaction_price) as prevTotal
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 month), '%'));
       ");
     } elseif ($kind == 'yearly') {
       $query = $this->db->query("
-        select 'Last Year`s Sales' as 'title', date_format(date_sub('$date', interval 1 year), '%Y') as date, sum(total_transaction_price) as previous
+        select 'Last Year`s Sales' as 'title', date_format(date_sub('$date', interval 1 year), '%Y') as date, sum(subtotal) as previous, sum(delivery_charge) as dCharge, sum(total_transaction_price) as prevTotal
         from TRANSACTIONS
         where transaction_date like (select concat(date_sub('$date', interval 1 year), '%'));
       ");

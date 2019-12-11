@@ -6,6 +6,11 @@
           <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Add a Transaction"></i>
         </button>
       </div>
+      <!-- <div class="container-fluid p-0 d-flex justify-content-center">
+        <button class="btn btn-success mb-2" data-toggle="modal" data-target=".multi-transac-modal">
+          <i class="fa fa-file-medical fa-lg" data-toggle="tooltip" data-placement="right" title="Add multiple transactions"></i>
+        </button>
+      </div> -->
       <div class="container-fluid p-0 d-flex justify-content-center">
         <button class="btn btn-dark mb-2" data-toggle="modal" data-target=".print-report-modal">
           <i class="fa fa-print" data-toggle="tooltip" data-placement="right" title="Print Report"></i>
@@ -215,8 +220,8 @@
           <div class="spinner-border spinner-border-sm" id="edit_spinner"></div>
         </div>
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" name="isDelivered" id="e_isDelivered" onclick="isDeliv();">
-          <label class="custom-control-label" for="e_isDelivered" id="e_isDeliv">Cancelled</label>
+          <input type="checkbox" class="custom-control-input" name="isDelivered" id="e_isDelivered" onclick="isDeliv();" checked>
+          <label class="custom-control-label" for="e_isDelivered" id="e_isDeliv">Delivered</label>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="t_edit">Update</button>
@@ -364,13 +369,116 @@
             <div class="alert alert-danger py-1 my-auto" id="transactionFormAlert"></div>
           </div>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" name="isDelivered" id="isDelivered" onclick="isDeliv();">
-            <label class="custom-control-label" for="isDelivered" id="isDeliv">Cancelled</label>
+            <input type="checkbox" class="custom-control-input" name="isDelivered" id="isDelivered" onclick="isDeliv();" checked="true">
+            <label class="custom-control-label" for="isDelivered" id="isDeliv">Delivered</label>
           </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" onclick="addTransaction();">Save</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add multiple transaction modal -->
+<div class="modal fade multi-transac-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Multiple Transactions [via .CSV]</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="" target="_blank" action="<?php echo base_url().'transactions/multi_add' ?>" enctype="multipart/form-data" method="post">
+          <div class="row">
+            <div class="col">
+              <input class="form-control-file" accept=".csv" type="file" name="csvFile" value="">
+            </div>
+            <div class="col-auto">
+              <input class="btn btn-info btn-sm" type="submit" name="" value="Upload">
+            </div>
+          </div>
+        </form>
+        <div class="alert alert-warning mt-2" role="alert">
+          <strong>Warning: The .CSV file should have the following columns with the following format:</strong>
+          <table class="table m-0 mt-3">
+            <thead>
+              <tr>
+                <th>Column Name</th>
+                <th>Format</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Order Number</td>
+                <td>numbers (1 to 2147483647)</td>
+                <td>234</td>
+              </tr>
+              <tr>
+                <td>Dispatched By</td>
+                <td>Name (20 letters max)</td>
+                <td>Jude</td>
+              </tr>
+              <tr>
+                <td>Transaction Date</td>
+                <td>Date and Time (YYYY-mm-dd hh:mm:ss)</td>
+                <td>2019-12-01 01:30:00</td>
+              </tr>
+              <tr>
+                <td>Firstname</td>
+                <td>Name (25 letters max)</td>
+                <td>Juan</td>
+              </tr>
+              <tr>
+                <td>Lastname</td>
+                <td>Name (25 letters max)</td>
+                <td>Dela Cruz</td>
+              </tr>
+              <tr>
+                <td>Contact</td>
+                <td>Phone Number (11 digits)</td>
+                <td>09123456789</td>
+              </tr>
+              <tr>
+                <td>Delivery Address</td>
+                <td>Postal Address</td>
+                <td>Blk 5 Lot 6, Deca Homes subdv, Langon Vista, Cararayan</td>
+              </tr>
+              <tr>
+                <td>Landmarks/Directions</td>
+                <td>Specific directions</td>
+                <td>Turn right in the intersection. Rainbow colored gate.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<div class="modal fade multi-transac-preview-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Multiple Transactions Preview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
@@ -393,24 +501,24 @@
             <div class="col-4">
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_ID as 'ID'"> Transaction ID</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.date_encoded as 'Encoded'"> Date Encoded</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Enco. by'" checked> Encoded By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.encoded_by as 'Enco. by'"> Encoded By</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.order_number as 'Ord. No'" checked> Order Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.dispatched_by as 'Disp. by'" checked> Dispatched By</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.dispatched_by as 'Disp. by'"> Dispatched By</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.transaction_date as 'Transaction Date'" checked> Transaction Date</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_fname as 'Firstname'" checked> Customer Firstname</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_lname as 'Lastname'" checked> Customer Lastname</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_contact as 'Contact'" checked> Contact Number</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_address as 'Delivery Addresss'" checked> Delivery Address</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.landmark_directions as 'Landmarks/Directions'" checked> Landmarks/Directions</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_fname as 'Firstname'"> Customer Firstname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_lname as 'Lastname'"> Customer Lastname</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.customer_contact as 'Contact'"> Contact Number</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_address as 'Delivery Addresss'"> Delivery Address</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.landmark_directions as 'Landmarks/Directions'"> Landmarks/Directions</label>
             </div>
             <div class="col-4">
-              <label class="d-block"><input type="checkbox" name="columns[]" value="p.partner_name as 'Partner'" checked> Partner</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="" checked> Order List</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="p.partner_name as 'Partner'"> Partner</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value=""> Order List</label>
               <label class="d-block"><input type="checkbox" name="columns[]" value="t.subtotal as 'Subtotal (₱)'" checked> Sub-Total</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_charge as 'D.Charge (₱)'" checked> Delivery Charge</label>
-              <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total (₱)'" checked> Transaction Total</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.delivery_charge as 'D.Charge (₱)'"> Delivery Charge</label>
+              <label class="d-block"><input type="checkbox" name="columns[]" value="t.total_transaction_price as 'Total (₱)'"> Transaction Total</label>
             </div>
           </div>
           <div class="row mb-4">
@@ -424,8 +532,8 @@
               <h4 class="px-3 mt-4">Delivered?</h4>
               <hr class="my-1">
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" name="isDelivered" id="delivered" onclick="isDeliv();">
-                <label class="custom-control-label" for="delivered" id="deliv">Cancelled</label>
+                <input type="checkbox" class="custom-control-input" name="isDelivered" id="delivered" onclick="isDeliv();" checked>
+                <label class="custom-control-label" for="delivered" id="deliv">Delivered</label>
               </div>
               <label class="d-block"><input type="checkbox" name="delivered" value="all" onclick="document.getElementById('delivered').disabled = (this.checked) ? true : false;"> All</label>
             </div>

@@ -17,7 +17,7 @@
     <!-- <input class="form-control" type="date" name="" value=""> -->
     <canvas id="topPartners"></canvas>
     <small>
-      <i>This graph is quite misleading: New partners doesn't have equal footing with old partners.</i>
+      <i class="text-danger">This graph is quite misleading: New partners doesn't have equal footing with old partners.</i>
     </small>
   </div>
 

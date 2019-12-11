@@ -23,7 +23,7 @@ class Transactions extends CI_Controller {
 		$data['hasRes'] = (is_array($searRes) && sizeof($searRes) == 0) ? false : true;
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
-		$data['transactions'] = array_slice($allT, ($p-1)*25, 25, true);
+		$data['transactions'] = ($searRes) ? $allT : array_slice($allT, ($p-1)*25, 25, true);
 		$data['onRecord'] = sizeof($allT);
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();
@@ -148,8 +148,8 @@ class Transactions extends CI_Controller {
 
 		$query = 'select '.$select.' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID'.$where.' order by '.$orderby.';';
 		$ordersQuery = 'select t.transaction_ID, o.quantity, o.item_name, o.price from TRANSACTIONS t, ORDERS o where t.transaction_ID = o.transaction_ID '.$where.';';
-		$blankTotals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.total_transaction_price) as 'Total' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
-		$partnerTotals = "select avg(p.contract_percentage) as 'contract', sum(t.total_transaction_price) * avg(p.contract_percentage) as 'service_fee' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
+		$blankTotals = "select count(t.transaction_ID) as 'Number of Transactions', sum(t.subtotal) as 'Total', sum(t.delivery_charge) as dCharge, sum(t.total_transaction_price) as prevTotal from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
+		$partnerTotals = "select avg(p.contract_percentage) as 'contract', sum(t.subtotal) * avg(p.contract_percentage) as 'service_fee' from TRANSACTIONS t, PARTNERS p where t.partner_ID = p.partner_ID ".$where.';';
 
 
 		$data['company'] = $this->input->post('company');
@@ -204,5 +204,25 @@ class Transactions extends CI_Controller {
 			'isDelivered' => ($this->input->post('e_isDelivered') == 'true') ? true : false
 		);
 		$this->transactions_model->edit($data);
+	}
+
+	public function multi_add() {
+		$config['upload_path'] = 'assets/uploads/';
+		$config['allowed_types'] = 'csv';
+    $config['overwrite'] = true;
+    // $config['max_size']             = 100;
+
+    $this->load->library('upload', $config);
+
+    if ( ! $this->upload->do_upload('csvFile')) {
+	    $error = array('error' => $this->upload->display_errors());
+
+			var_dump($error);
+    }
+    else {
+      $data = array('upload_data' => $this->upload->data());
+
+      var_dump($data);
+    }
 	}
 }

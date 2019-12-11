@@ -5,21 +5,26 @@ $('#barangaysSpin').hide();
 function hitSearchArray(obj) {
   var hits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var keys = [
-    "Abella", "Bagumbayan", "Balatas", "Calauag", "Cararayan", "Carolina", "Concepcion", "Dayangdang",
-    "Del Rosario", "Dinaga", "Igualdad", "Lerma", "Liboton", "Mabolo", "Pacol", "Panicuason", "Penafrancia",
-    "Sabang", "San Felipe", "San Francisco", "San Isidro", "Santa Cruz", "Tabuco", "Tinago", "Triangulo"
+    ["Abella"], ["Bagumbayan"], ["Balatas"], ["Calauag"], ["Cararayan"], ["Carolina"], ["Concepcion"], ["Dayangdang"],
+    ["Del Rosario"], ["Dinaga"], ["Igualdad"], ["Lerma"], ["Liboton"], ["Mabolo"], ["Pacol"], ["Panicuason"], ["Penafrancia"],
+    ["Sabang"], ["San Felipe"], ["San Francisco"], ["San Isidro"], ["Sta Cruz", "Cruz"], ["Tabuco"], ["Tinago"], ["Triangulo"]
   ];
 
+  let checked = 0;
   for(var q = 0; q < obj.length; q++) {
     for(var w = 0; w < keys.length; w++) {
-      if(obj[q]['postal'].toLowerCase().search(keys[w].toLowerCase()) != -1) {
-        hits[w] = hits[w] + 1;
+      for(var e = 0; e < keys[w].length; e++){
+        if(obj[q]['postal'].toLowerCase().search(keys[w][e].toLowerCase()) != -1) {
+          hits[w] = hits[w] + 1;
+          checked++;
+          break;
+        }
       }
     }
   }
 
-  // console.log(hits);
-  // console.log(keys);
+  hits.push(obj.length - checked);
+  console.log(hits);
   return hits
 }
 
@@ -76,6 +81,11 @@ $.ajax({
             },
             stacked: true
           }]
+        },
+        elements: {
+          line: {
+            tension: 0 // disables bezier curves
+          }
         },
         title: {
           display: true,
@@ -141,6 +151,7 @@ $.ajax({
   }
 });
 
+// per Barangays
 $.ajax({
   type: 'GET',
   url: window.origin + "/analytics/varsForPerBarang",
@@ -180,13 +191,24 @@ $.ajax({
           "Santa Cruz",
           "Tabuco",
           "Tinago",
-          "Triangulo"
+          "Triangulo",
+          "Unclassified"
         ],
         datasets: [{
-          label: 'Text Hits',
+          label: 'Keyword Hits',
           data: hits,
-          backgroundColor: 'lightgreen',
-          borderColor: 'green',
+          backgroundColor: function() {
+             var unnecessary = [];
+             for(var q = 0; q < hits.length-1; q++) {unnecessary.push('lightgreen');}
+             unnecessary.push('#FF655C');
+             return unnecessary;
+          },
+          borderColor: function() {
+            var unnecessary = [];
+            for(var q = 0; q < hits.length-1; q++) {unnecessary.push('green');}
+            unnecessary.push('red');
+            return unnecessary;
+          },
           borderWidth: 1
         }]
       },
@@ -207,6 +229,7 @@ $.ajax({
         }
       }
     });
+    console.log(myChart);
     $('#barangaysSpin').hide();
   }
 });
