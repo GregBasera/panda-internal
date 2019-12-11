@@ -99,7 +99,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Daily Sales Report';
 			$data['titleSupport'] = 'for the date '.date('M d, Y', strtotime($mods));
-			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods, $kind) : '';
+			$data['prev'] = $this->transactions_model->getPrev($mods, $kind);
 			$data['curr'] = array(
 				'possessive' =>  "Day's",
 				'date' => date('M d, Y', strtotime($mods))
@@ -111,7 +111,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Monthly Sales Report';
 			$data['titleSupport'] = 'for the month and year '.date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)));
-			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods, $kind) : '';
+			$data['prev'] = $this->transactions_model->getPrev($mods, $kind);
 			$data['curr'] = array(
 				'possessive' =>  "Month's",
 				'date' => date('F Y', strtotime(substr($mods, 0, strlen($mods)-3)))
@@ -123,7 +123,7 @@ class Transactions extends CI_Controller {
 
 			$data['kind'] = 'Yearly Sales Report';
 			$data['titleSupport'] = 'for the year '.$mods;
-			$data['prev'] = ($this->input->post('sumPrev')) ? $this->transactions_model->getPrev($mods.'-01-01', $kind) : '';
+			$data['prev'] = $this->transactions_model->getPrev($mods.'-01-01', $kind);
 			$data['curr'] = array(
 				'possessive' =>  "Year's",
 				'date' => $mods
@@ -157,10 +157,16 @@ class Transactions extends CI_Controller {
 		$data['addr2'] = $this->input->post('addr2');
 		$data['company_email'] = $this->input->post('company_email');
 		$data['company_contact'] = $this->input->post('company_contact');
+		$data['summaries'] = array(
+			'subSum' => ($this->input->post('subSum') ? true : false),
+			'chaSum' => ($this->input->post('chaSum') ? true : false),
+			'totSum' => ($this->input->post('totSum') ? true : false),
+			'sumContract' => ($this->input->post('sumContract') ? true : false)
+		);
 		$data['transactions'] = $this->transactions_model->printThis($query);
 		$data['orders'] = $this->transactions_model->printThis($ordersQuery);
-		$data['blankTotals'] = ($this->input->post('sumCurr')) ? $this->transactions_model->printThis($blankTotals) : '';
-		$data['partnerTotals'] = ($this->input->post('sumContract')) ? $this->transactions_model->printThis($partnerTotals) : '';
+		$data['blankTotals'] = $this->transactions_model->printThis($blankTotals);
+		$data['partnerTotals'] = $this->transactions_model->printThis($partnerTotals);
 		$data['prepby'] = $this->input->post('prepby');
 		$data['posi'] = $this->input->post('posi');
 

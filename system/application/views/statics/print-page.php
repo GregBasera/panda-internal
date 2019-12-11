@@ -33,7 +33,7 @@
     </div>
     <div class="container my-5">
       <div class="row">
-        <div class="col-6">
+        <!-- <div class="col-6">
           <?php if ($prev != ''): ?>
             <h5><?php echo $prev[0]['title'] ?> (<?php echo $prev[0]['date'] ?>): <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
@@ -47,17 +47,23 @@
           <?php if ($blankTotals != ''): ?>
             <h5>Number of Deliveries (<?php echo $curr['date'] ?>): <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
           <?php endif; ?>
-        </div>
+        </div> -->
 
         <div class="col-6">
-          <h5>Previous Grand Subtotal: <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
-          <h5>Current Grand Subtotal: <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
-          <h5>Previous Grand Total - Delivery Charge: <b>₱ <?php echo number_format($prev[0]['dCharge'], 2, '.', ',') ?></b></h5>
-          <h5>Current Grand Total - Delivery Charge: <b>₱ <?php echo number_format($blankTotals[0]['dCharge'], 2, '.', ',') ?></b></h5>
-          <h5>Previous Sales (Subtotal + Delivery Charge): <b>₱ <?php echo number_format($prev[0]['prevTotal'], 2, '.', ',') ?></b></h5>
-          <h5>Current Sales (Subtotal + Delivery Charge): <b>₱ <?php echo number_format($blankTotals[0]['prevTotal'], 2, '.', ',') ?></b></h5>
+          <?php if ($summaries['subSum']): ?>
+            <h5>Previous Grand Subtotal: <b>₱ <?php echo number_format($prev[0]['previous'], 2, '.', ',') ?></b></h5>
+            <h5>Current Grand Subtotal: <b>₱ <?php echo number_format($blankTotals[0]['Total'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
+          <?php if ($summaries['chaSum']): ?>
+            <h5>Previous Grand Total - Delivery Charge: <b>₱ <?php echo number_format($prev[0]['dCharge'], 2, '.', ',') ?></b></h5>
+            <h5>Current Grand Total - Delivery Charge: <b>₱ <?php echo number_format($blankTotals[0]['dCharge'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
+          <?php if ($summaries['totSum']): ?>
+            <h5>Previous Sales (Subtotal + Delivery Charge): <b>₱ <?php echo number_format($prev[0]['prevTotal'], 2, '.', ',') ?></b></h5>
+            <h5>Current Sales (Subtotal + Delivery Charge): <b>₱ <?php echo number_format($blankTotals[0]['prevTotal'], 2, '.', ',') ?></b></h5>
+          <?php endif; ?>
           <h5>Number of Deliveries: <b><?php echo $blankTotals[0]['Number of Transactions'] ?></b></h5>
-          <?php if ($partnerTotals != ''): ?>
+          <?php if ($summaries['sumContract']): ?>
             <h5>Contract % and Service Fee: <b>[<?php echo number_format($partnerTotals[0]['contract'], 3, '.', '') ?>]</b> <b>₱ <?php echo number_format($partnerTotals[0]['service_fee'], 2, '.', ',') ?></b></h5>
           <?php endif; ?>
         </div>

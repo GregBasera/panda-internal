@@ -14,11 +14,6 @@ function isDeliv() {
   $("#isDeliv").html((document.transaction.isDelivered.checked == true) ? "Delivered" : "Cancelled");
   $("#deliv").html((document.Print.isDelivered.checked == true) ? "Delivered" : "Cancelled");
   $("#e_isDeliv").html((document.getElementById('e_isDelivered').checked == true) ? "Delivered" : "Cancelled");
-  // if (){
-  //   $("").html("Delivered");
-  // } else {
-  //   $("#isDeliv,#deliv,#e_isDeliv").html("Cancelled");
-  // }
 }
 
 function addTransaction() {

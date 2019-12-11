@@ -565,8 +565,9 @@
               </div>
               <h4 class="px-3 mt-4">Summaries</h4>
               <hr class="my-1">
-              <label class="d-block"><input type="checkbox" name="sumPrev" value="prev" checked> Previous Sales</label>
-              <label class="d-block"><input type="checkbox" name="sumCurr" value="curr" checked> Curr. Sales and No. of Deliveries</label>
+              <label class="d-block"><input type="checkbox" name="subSum" value="prev" checked> Subtotals</label>
+              <label class="d-block"><input type="checkbox" name="chaSum" value="curr" checked> Delivery Charges</label>
+              <label class="d-block"><input type="checkbox" name="totSum" value="curr" checked> Total Prices</label>
               <label class="d-block"><input type="checkbox" name="sumContract" value="cont" disabled> Contract % and Service Fee</label>
               <!-- <label class="d-block"><input type="checkbox" name="sumDlvs" value="dlvs" checked> Number of Deliveries</label> -->
             </div>
