@@ -568,7 +568,9 @@
               <label class="d-block"><input type="checkbox" name="subSum" value="prev" checked> Subtotals</label>
               <label class="d-block"><input type="checkbox" name="chaSum" value="curr" checked> Delivery Charges</label>
               <label class="d-block"><input type="checkbox" name="totSum" value="curr" checked> Total Prices</label>
-              <label class="d-block"><input type="checkbox" name="sumContract" value="cont" disabled> Contract % and Service Fee</label>
+              <div id="labelCont">
+                <label class="d-block"><input type="checkbox" name="sumContract" value="cont"> Contract % and Service Fee</label>
+              </div>
               <!-- <label class="d-block"><input type="checkbox" name="sumDlvs" value="dlvs" checked> Number of Deliveries</label> -->
             </div>
             <div class="col-4">

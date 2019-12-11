@@ -142,14 +142,18 @@ function kindToMod() {
   }
 }
 
+// $(document.Print.sumContract).hide();
+$('#labelCont').hide();
 function reportSummary() {
   if(document.Print.partner.value == '') {
     document.Print.sumContract.checked = false;
     // document.Print.sumContract.disabled = true;
-    $(document.Print.sumContract).attr("disabled", true);
+    // $(document.Print.sumContract).hide();
+    $('#labelCont').hide();
   } else {
     // document.Print.sumContract.disabled = false;
-    $(document.Print.sumContract).removeAttr("disabled");
+    // $(document.Print.sumContract).show();
+    $('#labelCont').show();
   }
 }
 
