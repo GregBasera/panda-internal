@@ -541,11 +541,11 @@
               <h4 class="px-3">Modifiers</h4>
               <hr class="my-1">
               Partner Name
-              <select class="custom-select" name="partner" data-toggle="tooltip" data-placement="bottom"
+              <select class="custom-select" name="partner" onchange="reportSummary();" data-toggle="tooltip" data-placement="bottom"
                 title="Keep this field blank if you don't want a Partner specific report.">
                 <option value="" onclick="reportSummary();">--blank--</option>
                 <?php foreach ($partners as $partner): ?>
-                  <option value="<?php echo $partner['partner_ID'] ?>" onclick="reportSummary();"><?php echo $partner['partner_name'] ?></option>
+                  <option value="<?php echo $partner['partner_ID'] ?>"><?php echo $partner['partner_name'] ?></option>
                 <?php endforeach; ?>
               </select>
               <div class="mt-2" id="dailyMod">
