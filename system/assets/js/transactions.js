@@ -103,6 +103,7 @@ function addTransaction() {
       success: function(result) {
         // $(location).attr('href', window.origin + '/transactions/view');
         $('.add-transac-modal').modal('hide');
+        $('#transactionFormAlert').hide();
       }
     });
   }
