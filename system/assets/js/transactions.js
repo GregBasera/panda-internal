@@ -10,6 +10,10 @@ $('#edit_spinner').hide();
 
 // $('.multi-transac-preview-modal').modal('toggle');
 
+function removeTransacModal() {
+  $('.add-transac-modal').modal('hide');
+}
+
 function isDeliv() {
   $("#isDeliv").html((document.transaction.isDelivered.checked == true) ? "Delivered" : "Cancelled");
   $("#deliv").html((document.Print.isDelivered.checked == true) ? "Delivered" : "Cancelled");
@@ -97,7 +101,8 @@ function addTransaction() {
         $('#spinner').show();
       },
       success: function(result) {
-        $(location).attr('href', window.origin + '/transactions/view');
+        // $(location).attr('href', window.origin + '/transactions/view');
+        $('.add-transac-modal').modal('hide');
       }
     });
   }
