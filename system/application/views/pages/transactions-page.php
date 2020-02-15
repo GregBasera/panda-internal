@@ -366,6 +366,9 @@
         <div class="modal-footer">
           <div class="container-fluid">
             <div class="spinner-border spinner-border-sm" id="spinner"></div>
+            <div id="sendToDBSuccess">
+              <i class="fa fa-check"></i>
+            </div>
             <div class="alert alert-danger py-1 my-auto" id="transactionFormAlert"></div>
           </div>
           <div class="custom-control custom-switch">

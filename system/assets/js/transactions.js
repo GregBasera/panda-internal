@@ -1,5 +1,6 @@
 $('#transactionFormAlert').hide();
 $('#spinner').hide();
+$('#sendToDBSuccess').hide();
 
 $('#dailyMod').hide();
 $('#monthlyMod').hide();
@@ -102,8 +103,9 @@ function addTransaction() {
       },
       success: function(result) {
         // $(location).attr('href', window.origin + '/transactions/view');
+        $('#spinner').hide();
+        $('#sendToDBSuccess').show();
         $('.add-transac-modal').modal('hide');
-        $('#transactionFormAlert').hide();
       }
     });
   }
