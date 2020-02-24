@@ -269,7 +269,7 @@
           <div class="row">
             <div class="col-3 pr-1">
               Transaction Date
-              <input class="form-control" type="date" name="t_date" value="">
+              <input id="for-sticky-date" class="form-control" type="date" name="t_date" value="">
             </div>
             <div class="col-3 pl-1">
               Transaction Time
