@@ -102,10 +102,11 @@ function addTransaction() {
         $('#spinner').show();
       },
       success: function(result) {
-        // $(location).attr('href', window.origin + '/transactions/view');
-        $('#spinner').hide();
-        $('#sendToDBSuccess').show();
-        $('.add-transac-modal').modal('hide');
+        var now = new Date();
+        now.setHours(now.getHours() + 12);
+        document.cookie = "sticky-date=" + document.transaction.t_date.value + ";";
+        document.cookie = "expires=" + now.toGMTString() + ";";
+        $(location).attr('href', window.origin + '/transactions/view');
       }
     });
   }
