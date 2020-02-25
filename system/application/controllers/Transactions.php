@@ -19,11 +19,11 @@ class Transactions extends CI_Controller {
     $page['role'] = $_SESSION['role'];
 
 		$data['name'] = $_SESSION['user'];
-		$allT = ($searRes) ? $searRes : $this->transactions_model->getAll();
+		$allT = ($searRes) ? $searRes : $this->transactions_model->getAllIDs();
 		$data['hasRes'] = (is_array($searRes) && sizeof($searRes) == 0) ? false : true;
 		$data['pages'] = ceil(sizeof($allT)/25);
 		$data['act_page'] = $p;
-		$data['transactions'] = ($searRes) ? $allT : array_slice($allT, ($p-1)*25, 25, true);
+		$data['transactions'] = ($searRes) ? $allT : $this->transactions_model->getAll(array_slice($allT, ($p-1)*25, 25, true));
 		$data['onRecord'] = sizeof($allT);
 		$data['orders'] = $this->transactions_model->getRelatedOrders();
 		$data['partners'] = $this->transactions_model->getPartnerIDs();

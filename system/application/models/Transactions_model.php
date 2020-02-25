@@ -1,9 +1,31 @@
 <?php
 class Transactions_model extends CI_Model{
-  public function getAll() {
+  public function getAll($portion) {
+    // print_r(array_keys($portion));
+    $portionMinKey = array_keys($portion)[0];
+    $portionMaxKey = array_keys($portion)[count($portion)-1];
+    // echo $portionMinKey.$portionMaxKey;
+    $inClause = '';
+    for($q = $portionMinKey; $q <= $portionMaxKey; $q++){
+      $inClause = $inClause . "'" . $portion[$q]['transaction_ID'] . "', ";
+    }
+    $inClause = rtrim($inClause, ", ");
+
     $query = $this->db->query("
       select t.transaction_ID, t.date_encoded, t.encoded_by, t.order_number, t.dispatched_by, t.transaction_date, t.customer_fname, t.customer_lname, t.customer_contact,
       t.delivery_address, t.landmark_directions, p.partner_name, t.subtotal, t.delivery_charge, t.total_transaction_price, t.isDelivered
+      from TRANSACTIONS t, PARTNERS p
+      where t.transaction_ID in ($inClause)
+      and t.partner_ID = p.partner_ID
+      order by t.transaction_date desc, t.order_number desc;
+    ");
+    $result = $query->result_array();
+    return $result;
+  }
+
+  public function getAllIDs() {
+    $query = $this->db->query("
+      select t.transaction_ID
       from TRANSACTIONS t, PARTNERS p
       where t.partner_ID = p.partner_ID
       order by t.transaction_date desc, t.order_number desc;
